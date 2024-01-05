@@ -1,6 +1,7 @@
 import "@/app/ui/globals.css";
 import { primaryFont } from "./ui/fonts";
 import Header from "./ui/header/Header";
+import Footer from "./ui/Footer/Footer";
 
 export default function RootLayout({
   children,
@@ -9,9 +10,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${primaryFont.className} antialiased px-[40px]`}>
+      <body className={`relative ${primaryFont.className} antialiased pt-[95px]`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
