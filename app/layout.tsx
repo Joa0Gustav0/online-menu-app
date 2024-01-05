@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`relative ${primaryFont.className} antialiased pt-[95px]`}>
+      <body className={`relative ${primaryFont.className} antialiased`}>
         <Header />
         {children}
         <Footer />
