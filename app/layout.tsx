@@ -1,4 +1,5 @@
 import "@/app/ui/globals.css";
+import { primaryFont } from "./ui/fonts";
 import Header from "./ui/header/Header";
 
 export default function RootLayout({
@@ -8,7 +9,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${primaryFont.className} antialiased px-[40px]`}>
         <Header />
         {children}
       </body>
