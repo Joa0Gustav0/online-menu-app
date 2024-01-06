@@ -18,6 +18,25 @@ const config: Config = {
         pizza: "#EF2A2D",
         acai: "#4d3d87",
       },
+      keyframes: {
+        pop: {
+          "0%": {
+            transform: "scale(100%, 100%)",
+          },
+          "25%": {
+            transform: "scale(85%, 85%)"
+          },
+          "75%": {
+            transform: "scale(130%, 130%)"
+          },
+          "100%": {
+            transform: "scale(115%, 115%)"
+          }
+        }
+      },
+      animation: {
+        button_hover: "pop linear .25s normal",
+      }
     },
   },
   plugins: [],

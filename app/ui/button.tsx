@@ -21,7 +21,7 @@ function Button({
       "w-full": auto === true,
       "py-[5px] px-[15px]": irregular === true,
       "p-[15px]": irregular === false,
-    })}`}>
+    })} hover:duration-[.25s] hover:animate-button_hover hover:scale-[115%] active:scale-[85%]`}>
       {text.toUpperCase()}
     </button>
   );

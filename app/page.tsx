@@ -26,14 +26,14 @@ export default function Home() {
 
   var theme = {
     bgColor: clsx({
-      "bg-default transition-all duration-[.5s]": pageTheme === "default",
-      "bg-pizza transition-all duration-[.5s]": pageTheme === "pizza",
-      "bg-acai transition-all duration-[.5s]": pageTheme === "acai",
+      "bg-default transition-color duration-[.5s]": pageTheme === "default",
+      "bg-pizza transition-color duration-[.5s]": pageTheme === "pizza",
+      "bg-acai transition-color duration-[.5s]": pageTheme === "acai",
     }),
     textColor: clsx({
-      "text-default transition-all duration-[.5s]": pageTheme === "default",
-      "text-pizza transition-all duration-[.5s]": pageTheme === "pizza",
-      "text-acai transition-all duration-[.5s]": pageTheme === "acai",
+      "text-default transition-color duration-[.5s]": pageTheme === "default",
+      "text-pizza transition-color duration-[.5s]": pageTheme === "pizza",
+      "text-acai transition-color duration-[.5s]": pageTheme === "acai",
     }),
   };
 
