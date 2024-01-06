@@ -3,6 +3,7 @@ import Button from "../button";
 import Link from "next/link";
 import { secondaryFont } from "../fonts";
 import clsx from "clsx";
+import SlideDots from "./SlideDots";
 
 function Hero({
   theme,
@@ -81,6 +82,13 @@ function Hero({
           className="mirror-border-picture absolute right-0 bottom-0 w-[375px] opacity-[.15] blur-[2px]"
         />
       )}
+      <span className="absolute bottom-[33px] left-1/2 -translate-x-1/2 flex gap-[15px]">
+        {
+          ["bg-default","bg-pizza","bg-acai"].map((elem, i) => (
+            <SlideDots key={"dot-" + i} behaviour={theme.bgColor.includes(elem) ? `${elem} scale-[125%]` : "bg-black"}  />
+          ))
+        }
+      </span>
     </section>
   );
 }

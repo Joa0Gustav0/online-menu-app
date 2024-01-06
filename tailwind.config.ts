@@ -32,10 +32,25 @@ const config: Config = {
           "100%": {
             transform: "scale(115%, 115%)"
           }
+        },
+        fade_In: {
+          "0%": {
+            opacity: "0"
+          },
+          "25%": {
+            opacity: "1"
+          },
+          "75%": {
+            opacity: "1"
+          },
+          "100%": {
+            opacity: "0"
+          }
         }
       },
       animation: {
         button_hover: "pop linear .25s normal",
+        fade_In: "fade_In linear 4.75s infinite"
       }
     },
   },
