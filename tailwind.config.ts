@@ -14,8 +14,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primaryColor: "#fbc00f",
-      }
+        default: "#fbc00f",
+        pizza: "#EF2A2D",
+        acai: "#4d3d87",
+      },
     },
   },
   plugins: [],
