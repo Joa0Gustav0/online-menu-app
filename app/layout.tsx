@@ -1,6 +1,6 @@
 import "@/app/ui/globals.css";
 import { primaryFont } from "./ui/fonts";
-import Header from "./ui/header/Header";
+import Header from "./ui/Header/Header";
 import Footer from "./ui/Footer/Footer";
 
 export default function RootLayout({

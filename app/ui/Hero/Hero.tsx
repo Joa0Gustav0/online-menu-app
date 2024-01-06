@@ -14,7 +14,6 @@ function Hero({
       hero: StaticImageData;
       border: {
         picture: StaticImageData;
-        mirrorBorder?: boolean;
         text: string;
       };
     };
@@ -73,15 +72,13 @@ function Hero({
       <Image
         src={theme.picture.border.picture}
         alt={"Imagem meramente ilustrativa de " + theme.picture.border.text}
-        className="absolute right-0 bottom-0 w-[375px]"
+        className="absolute right-0 bottom-0 w-full max-w-[375px]"
       />
-      {theme.picture.border.mirrorBorder && (
-        <Image
+      <Image
           src={theme.picture.border.picture}
           alt={"Imagem meramente ilustrativa de " + theme.picture.border.text}
           className="mirror-border-picture absolute right-0 bottom-0 w-[375px] opacity-[.15] blur-[2px]"
         />
-      )}
       <span className="absolute bottom-[33px] left-1/2 -translate-x-1/2 flex gap-[15px]">
         {
           ["bg-default","bg-pizza","bg-acai"].map((elem, i) => (
@@ -90,7 +87,7 @@ function Hero({
         }
       </span>
     </section>
-  );
+  )
 }
 
 export default Hero;

@@ -11,6 +11,7 @@ import _acaiHero from "@/public/media/sections-pictures/hero/acai-leaves-hero-pi
 
 import clsx from "clsx";
 import { useState, useEffect } from "react";
+import About from "./ui/About/About";
 
 export default function Home() {
   const themes = ["default", "pizza", "acai"];
@@ -23,11 +24,11 @@ export default function Home() {
       },
       {
         hero: pizzaHero,
-        border: { picture: _pizzaHero, mirrorBorder: true, text: "pizzas" },
+        border: { picture: _pizzaHero, text: "pizzas" },
       },
       {
         hero: acaiHero,
-        border: { picture: _acaiHero, mirrorBorder: true, text: "açaí" },
+        border: { picture: _acaiHero, text: "açaí" },
       },
     ]
   };
@@ -57,5 +58,10 @@ export default function Home() {
     }),
   };
 
-  return <Hero theme={theme} />;
+  return (
+    <main>
+      <Hero theme={theme} />
+      <About theme={theme} />
+    </main>
+  )
 }
