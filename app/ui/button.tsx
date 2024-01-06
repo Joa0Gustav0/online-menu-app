@@ -23,7 +23,7 @@ function Button({
 
   return (
     <button
-      className={`${_fontSize} ${secondaryFont.className} text-white uppercase ${
+      className={`${_fontSize} ${secondaryFont.className} relative text-white uppercase ${
         bgColor ? bgColor : "bg-default transition-all duration-[.25s]"
       } rounded-[5px] w-fit ${clsx({
         "w-full": auto === true,
