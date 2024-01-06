@@ -4,43 +4,25 @@
       "picture": "/media/sections-pictures/reviews/chef-picture.jpg",
       "name": "Juan Gomes",
       "content": "“Enquanto chefe de cozinha, hei  de reconhecer que a Burger tem a sua maestria no âmbito gastronômico.”",
-      "icons": {
-        "main": "/media/icons/quality-icon.png"
-      }
+      "icon": "/media/icons/quality-icon.png"
     },
     {
       "picture": "/media/sections-pictures/reviews/person-picture-1.jpg",
       "name": "Joana Cecília",
       "content": "“Na correria diária, posso sempre contar com a Burger. Ter uma refeição incrível nunca foi tão prático!”",
-      "icons": {
-        "main": "Confiança!",
-        "extra": {
-          "icon": "/media/icons/curly-arrow-icon.png",
-          "position": "",
-          "rotation": ""
-        }
-      }
+      "word": "Confiança!"
     },
     {
       "picture": "/media/sections-pictures/reviews/person-picture.jpg",
       "name": "Carlos Santana",
       "content": "“Eu e minha família nos divertimos muito enquanto conversamos e degustamos uma pizza da Burger na hora do jantar.”",
-      "icons": {
-        "main": "/media/icons/quality-icon.png"
-      }
+      "icon": "/media/icons/quality-icon.png"
     },
     {
       "picture": "/media/sections-pictures/reviews/photographer-picture.jpg",
       "name": "Jeffrey James",
       "content": "“Esse hambúrguer aqui está divino! E olha a aparência dele! Com certeza, é um modelo perfeito para um ensaio fotográfico.”",
-      "icons": {
-        "main": "Qualidade!",
-        "extra": {
-          "icon": "/media/icons/curly-arrow-icon-1.png",
-          "position": "",
-          "rotation": ""
-        }
-      }
+      "word": "Qualidade!"
     }
   ]
 }
