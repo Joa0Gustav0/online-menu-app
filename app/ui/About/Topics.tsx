@@ -24,7 +24,7 @@ function Topics({
       <p className="text-[#434343] text-center">
         {subStringArr.map((elem, i) => properties.keywords.includes(elem)
         ? (<span key={"bold-string-" + i} className="font-semibold">{elem + ' '}</span>)
-        : (<>{elem + ' '}</>))}
+        : (<span key={"bold-string-" + i}>{elem + ' '}</span>))}
       </p>
     </div>
   );
