@@ -70,7 +70,7 @@ export default function Home() {
       <About theme={theme} />
       <Reviews theme={theme} />
       <div className="flex items-center w-full">
-        <div className={theme.bgColor + "flex justify-end w-1/2  py-[15px]"}>
+        <div className={theme.bgColor + " flex justify-end w-1/2  py-[15px]"}>
           <div
             className={
               secondaryFont.className +

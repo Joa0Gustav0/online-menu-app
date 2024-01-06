@@ -24,13 +24,15 @@ function ReviewsContainer({
   return (
     <li className="flex justify-between w-full">
       <aside className={`${pos % 2 !== 0 ? "order-last" : "order-first"} flex items-center gap-[15px] w-1/2 p-[15px] bg-white rounded-[10px] shadow-xl`}>
-        <Image
-          src={review.picture}
-          alt={"Imagem referente a fotos de perfil de pessoas"}
-          width={115}
-          height={115}
-          className="rounded-full"
-        />
+        <abbr title="Esse(a) é apenas um(a) modelo (Avaliações apenas ilustrativas.).">
+          <Image
+            src={review.picture}
+            alt={"Imagem referente a fotos de perfil de pessoas"}
+            width={115}
+            height={115}
+            className="min-w-[115px] rounded-full"
+          />
+        </abbr>
         <div className="flex flex-col gap-[5px]">
           <h1 className={`${color} text-[20px] font-semibold`}>{review.name}</h1>
           <p className="text-justify">
