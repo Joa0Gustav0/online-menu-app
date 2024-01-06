@@ -12,6 +12,7 @@ import _acaiHero from "@/public/media/sections-pictures/hero/acai-leaves-hero-pi
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import About from "./ui/About/About";
+import Reviews from "./ui/Reviews/Reviews";
 
 export default function Home() {
   const themes = ["default", "pizza", "acai"];
@@ -62,6 +63,7 @@ export default function Home() {
     <main>
       <Hero theme={theme} />
       <About theme={theme} />
+      <Reviews theme={theme} />
     </main>
   )
 }
