@@ -5,6 +5,7 @@ function ReviewsContainer({
   review,
   color,
   pos,
+  keywords,
 }: {
   review: {
     picture: string;
@@ -14,8 +15,12 @@ function ReviewsContainer({
     word?: string;
   },
   color: string,
-  pos: number
+  pos: number,
+  keywords: string[]
 }) {
+
+  const subStrings = review.content.split(" " || "." || "“" || "”");
+
   return (
     <li className="flex justify-between w-full">
       <aside className={`${pos % 2 !== 0 ? "order-last" : "order-first"} flex items-center gap-[15px] w-1/2 p-[15px] bg-white rounded-[10px] shadow-xl`}>
@@ -28,7 +33,15 @@ function ReviewsContainer({
         />
         <div className="flex flex-col gap-[5px]">
           <h1 className={`${color} text-[20px] font-semibold`}>{review.name}</h1>
-          <p className="text-justify">{review.content}</p>
+          <p className="text-justify">
+            {subStrings.map((subString, i) => !keywords.includes(subString)
+            ? (<span key={"word-" + i}>{subString} </span>)
+            : subString === "Burger"
+            ? (<span key={"word-" + i} className={secondaryFont.className}>{subString} </span>)
+            : subString === "Burger." 
+            ? (<span key={"word-" + i} className={secondaryFont.className}>{subString} </span>)
+            : (<span key={"word-" + i} className="font-semibold">{subString} </span>))}
+          </p>
         </div>
       </aside>
       <aside className="relative flex justify-center items-center w-1/2">

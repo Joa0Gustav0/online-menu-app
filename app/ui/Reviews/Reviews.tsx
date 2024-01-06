@@ -30,7 +30,7 @@ function Reviews({
         <Title text="Algumas avaliações sobre a" span="Burger!" textColor={theme.textColor} />
         <ul className="flex flex-col items-center gap-[26px] max-w-[800px] m-auto mt-[26px]">
           {reviews.map((review, i) => (
-            <ReviewsContainer key={"review-" + i} review={review} color={theme.textColor} pos={i} />
+            <ReviewsContainer key={"review-" + i} review={review} color={theme.textColor} pos={i} keywords={["chefe", "Burger", "Burger.", "maestria", "correria", "diária,", "refeição", "incrível", "prático!", "família", "divertimos", "divino!", "aparência", "perfeito"]} />
           ))}
         </ul>
       </div>
