@@ -1,10 +1,16 @@
+"use client";
+
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import FooterLinks from "./FooterLinks";
 import logo from "@/public/media/icons/nobg-logo-icon.png"
 
 function Footer() {
   return ( 
-    <footer className="w-full py-[26px] px-[36px] bg-[#f5f5f5]">
+    <footer className={`w-full py-[26px] px-[36px] text-black bg-[#f5f5f5] ${clsx({
+      "bg-white": usePathname() !== "/"
+    })}`}>
       <div className="flex items-center justify-between w-full max-w-[1115px] m-auto">
         <FooterLinks links={
           [

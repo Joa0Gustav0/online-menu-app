@@ -7,7 +7,7 @@ import { secondaryFont } from "../fonts";
 
 function Header() {
   return (
-    <header className={`fixed top-0 left-0 ${secondaryFont.className} w-full px-[36px] py-[26px] bg-white z-[100]`}>
+    <header className={`fixed top-0 left-0 ${secondaryFont.className} w-full px-[36px] py-[26px] text-black bg-white z-[100]`}>
       <div className="flex flex-row justify-between w-full max-w-[1115px] m-auto">
         <Link href={"/"} className="group relative">
           <h1 className={`w-fit text-[28px] group-hover:scale-[0%] transition-all duration-[.25s]`}>Burger.</h1>
