@@ -22,7 +22,7 @@ function Footer() {
         } />
         <span className="flex items-center font-medium">
           <Image src={logo} alt="Imagem referente a logo do website" className="w-[46px]" />
-          <p>© Burger, 2024. All rights reserved.</p>
+          <p>© Burger, {new Date().getFullYear()}. All rights reserved.</p>
         </span>
       </div>
     </footer>
