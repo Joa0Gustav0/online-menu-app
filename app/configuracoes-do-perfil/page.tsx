@@ -4,10 +4,10 @@ import Inputs from "../ui/Inputs";
 
 function Page() {
   return (
-    <main className="w-full max-w-[1366px] min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5]">
-      <div className="flex flex-col items-center gap-[26px] w-full max-w-[1115px] m-auto">
+    <main className="flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5]">
+      <div className="flex flex-col items-center gap-[26px] w-full max-w-[1115px]">
         <Title text="Essas são as suas" span="informações!" />
-        <div className="flex flex-col gap-[20px] w-full max-w-[600px] p-[20px] m-auto bg-white rounded-[10px] shadow-xl">
+        <div className="flex flex-col gap-[20px] w-full max-w-[525px] p-[20px] m-auto bg-white rounded-[10px] shadow-xl">
           {[
             {
               title: "Nome",
