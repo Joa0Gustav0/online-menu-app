@@ -2,8 +2,12 @@ import Image from "next/image";
 import blob from "@/public/media/extra/yellow-blob-picture.png";
 import Title from "../ui/Title";
 import SearchBar from "../ui/SearchBar";
+import data from "@/public/products.json"
 
 function Page() {
+
+  const products = data.products;
+
   return (
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-hidden">
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[600px] z-[10]">
