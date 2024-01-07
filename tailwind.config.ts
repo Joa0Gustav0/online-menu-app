@@ -37,20 +37,14 @@ const config: Config = {
           "0%": {
             opacity: "0"
           },
-          "25%": {
-            opacity: "1"
-          },
-          "75%": {
-            opacity: "1"
-          },
           "100%": {
-            opacity: "0"
+            opacity: "1"
           }
         }
       },
       animation: {
         button_hover: "pop linear .25s normal",
-        fade_In: "fade_In linear 4.75s infinite"
+        fade_In: "fade_In linear .25s normal"
       }
     },
   },

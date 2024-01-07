@@ -11,11 +11,19 @@
 
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   background-color: white;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: black;
   border: 2.5px solid white;
+}
+
+.info-aside::-webkit-scrollbar {
+  width: 5;
+  background-color: white;
+}
+.info-aside::-webkit-scrollbar-thumb {
+  background-color: #fbc00f;
 }
