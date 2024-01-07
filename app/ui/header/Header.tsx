@@ -20,6 +20,8 @@ function Header() {
     }
   };
 
+  const [sidebarActive, setSidebarActive] = useState(false);
+
   return (
     <>
       <header
@@ -50,10 +52,10 @@ function Header() {
               { text: "Cardápio", href: "/cardapio" },
             ]}
           />
-          <SideBarButton />
+          <SideBarButton setSidebarStatus={async (val) => setSidebarActive(val)} />
         </div>
       </header>
-      <SideBar />
+      <SideBar sidebarActive={sidebarActive} setSidebarStatus={async (val) => setSidebarActive(val)} />
     </>
   );
 }

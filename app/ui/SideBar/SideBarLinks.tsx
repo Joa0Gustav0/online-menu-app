@@ -4,6 +4,7 @@ import Link from "next/link";
 
 function SideBarLinks({
   links,
+  setSidebarStatus
 }: {
   links: Array<{
     icon: StaticImageData;
@@ -11,12 +12,14 @@ function SideBarLinks({
     text: string;
     href: string;
   }>;
+  setSidebarStatus: (val: boolean) => {}
 }) {
   return (
     <ul className="flex flex-col items-start pt-[10px]">
       {links.map((link, i) => (
         <li key={"sidebar-link-" + i} className="w-full">
           <Link
+            onClick={() => setSidebarStatus(false)}
             href={link.href}
             className="group relative flex gap-[10px] py-[15px] w-full hover:text-white"
           >
