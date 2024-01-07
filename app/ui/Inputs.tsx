@@ -17,6 +17,14 @@ function Inputs({
 
   const [infosActive, setInfosActive] = useState(false);
 
+  window.onmousedown = (e) => {
+    var test = typeof window === undefined;
+    if (test === false && e.target) {
+     var substrings = (e.target as HTMLElement).className?.split(" ");
+     if ((!substrings.includes("info-aside") && !substrings.includes("info-aside-children")) && infosActive) setInfosActive(false);
+    }
+  };
+
   return (
     <label htmlFor={"input-for-" + props.title.toLowerCase()} className="flex flex-col gap-[5px] px w-full">
       <div className="relative flex items-center gap-[10px] text-[1.25em] font-semibold w-fit">
@@ -28,11 +36,11 @@ function Inputs({
             className="w-[15px] hover:scale-[115%] hover:animate-button_hover active:scale-[85%] transition-all duration-[.25s]"
           />
         </button>
-        <aside className={`info-aside absolute top-1/2 right-0 translate-x-full flex flex-col gap-[10px] max-h-[215px] overflow-y-scroll p-[10px] shadow-lg text-[.75em] font-normal bg-white animate-fade_In rounded-[5px] z-[10] transition-all duration-[.75] ${clsx({
+        <aside className={` info-aside absolute top-1/2 right-0 translate-x-full flex flex-col gap-[10px] max-h-[215px] overflow-y-scroll p-[10px] shadow-lg text-[.75em] font-normal bg-white animate-fade_In rounded-[5px] z-[10] transition-all duration-[.75] ${clsx({
           "hidden": infosActive === false,
         })}`}>
           {props.infos.map((info, i) => (
-            <p key={"information-" + i} className="text-left">
+            <p key={"information-" + i} className=" info-aside-children text-left">
               - {info}
             </p>
           ))}
