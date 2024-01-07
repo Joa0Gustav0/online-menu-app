@@ -13,7 +13,7 @@ import { useState } from "react";
 function SearchBar( {filter, setFilter}: {filter: string; setFilter: (val: string) => {}}) {
 
   return (
-    <label className="flex items-center gap-[10px] w-full py-[5.75px] px-[10px] bg-white rounded-[25px]">
+    <label className="flex items-center gap-[10px] w-full max-w-[600px] py-[5.75px] px-[10px] bg-white rounded-[25px]">
       <Image src={magnifyingGlassIcon} alt={"Ícone representativo de uma lupa para interatividade com barra de pesquisa"} className="w-[20px]" />
       <input type="text" id="search-bar-input" placeholder="Qual o tamanho da sua fome hoje?" className="w-full bg-transparent focus:border-none focus:outline-none" />
       {[
