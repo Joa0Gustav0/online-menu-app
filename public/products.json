@@ -1,0 +1,166 @@
+{
+  "products": {
+    "pizzas": [
+      {
+        "productPicture": "/media/products-pictures/pizzas/california-pizza.jpg",
+        "productName": "Pizza Califórnia",
+        "productDescription": "Molho de Tomate, Peperoni, Cogumelos, Cebola Roxa, Milho, Presunto Defumado, Queijo Mussarela.",
+        "productPrice": "44,85"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/cheese-pizza.jpg",
+        "productName": "Pizza de Queijo",
+        "productDescription": "Queijo Mussarela, Queijo Prato, Queijo Catupiry, Azeitonas Pretas.",
+        "productPrice": "34,99"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/chicken-pizza.jpg",
+        "productName": "Pizza de Frango",
+        "productDescription": "Molho de Tomate, Queijo Catupiry, Frango Desfiado, Cebola Roxa, Batata, Oregano, Maionese.",
+        "productPrice": "38,44"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/egg-and-meat-pizza.jpg",
+        "productName": "Pizza de Ovo com Carne Seca",
+        "productDescription": "Molho de Tomate, Queijo Mussarela, Carne do Sol, Ovos.",
+        "productPrice": "32,45"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/margherita-pizza.jpg",
+        "productName": "Pizza Margherita",
+        "productDescription": "Molho de Tomate, Queijo Mussarela (Fior di latte), Folhas de Manjericão.",
+        "productPrice": "44,85"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/peperoni-pizza.jpg",
+        "productName": "Pizza de Peperoni",
+        "productDescription": "Molho de Tomate, Queijo Prato, Peperoni.",
+        "productPrice": "34,45"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/pineapple-pizza.jpg",
+        "productName": "Pizza de Abacaxi",
+        "productDescription": "Molho de Tomate, Carne Moida, Queijo Mussarela, Abacaxi.",
+        "productPrice": "37,45"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/spinach-and-mussarela-pizza.jpg",
+        "productName": "Pizza de Espinafre com Mussarela",
+        "productDescription": "Queijo Mussarela, Queijo Mussarela (Fior di Latte), Espinafre.",
+        "productPrice": "38,85"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/spinach-pizza.jpg",
+        "productName": "Pizza de Espinafre com Peperoni",
+        "productDescription": "Molho de Tomate, Queijo Prato, Peperoni, Espinafre.",
+        "productPrice": "34,99"
+      },
+      {
+        "productPicture": "/media/products-pictures/pizzas/tomato-pizza.jpg",
+        "productName": "Pizza de Tomate",
+        "productDescription": "Molho de Tomate, Queijo Catupiry, Tomates em Cubo.",
+        "productPrice": "33,49"
+      }
+    ],
+    "burgers": [
+      {
+        "productPicture": "/media/products-pictures/burgers/bacon-burger.jpg",
+        "productName": "Hambúrguer de Bacon",
+        "productDescription": "Pão, Blender de Carne (250g), Fatias de queijo cheedar (2 uni.), Tiras de Bacon, Cebola Caramelizada.",
+        "productPrice": "32,48"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/chesseburger.jpg",
+        "productName": "Cheeseburger Clássico",
+        "productDescription": "Pão, Molho especial, Blender de Carne, Fatia de Queijo Cheedar, Tomate, Alface.",
+        "productPrice": "24,95"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/chicken-burger.jpg",
+        "productName": "Hambúrguer de Frango",
+        "productDescription": "Pão, Blender de Frango Empanado(250g), Fatias de Queijo Mussarela (2 Uni.), Tomate, Cebola, Alface, Picles, Molho Especial.",
+        "productPrice": "27,89"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/crispy-burger.jpg",
+        "productName": "Hambúrguer Crispy",
+        "productDescription": "Pão, Blender de Carne(250g), Torresmos (100g), Batata-Palha, Tomate, Couve Picada, Ketchup, Molho Especial.",
+        "productPrice": "32,48"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/rodeo-burger.jpg",
+        "productName": "Hambúrguer Rodeio",
+        "productDescription": "Pão, Blender de Carne (300g, 2 Uni.), Fatias de Queijo Cheedar (2 Uni.), Tiras de Bacon, Cebolas Empanadas (3 Uni.), Ketchup.",
+        "productPrice": "34,50"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/triple-chessburger.jpg",
+        "productName": "Cheeseburger Triplo",
+        "productDescription": "Pão, Blender de Carne (200g, 3 Uni.), Molho Cheedar, Tomate, Alface, Cebola Caramelizada, Molho especial.",
+        "productPrice": "34,99"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/classic-french-fries.jpg",
+        "productName": "Batata-Frita Clássica",
+        "productDescription": "Batatas Inglesas Cortadas, em Formato Clássico, e Fritas.",
+        "productPrice": "17,89"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/crinkled-fries.jpg",
+        "productName": "Batata-Frita Crinkled",
+        "productDescription": "Batatas Inglesas Cortadas, em Formato Rugoso, e Fritas.",
+        "productPrice": ""
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/nuggets.jpg",
+        "productName": "Nuggets de Frango",
+        "productDescription": "Nuggets de Frango Empanados em Farinha Panko.",
+        "productPrice": "18,60"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/sweet-potato-fries.jpg",
+        "productName": "Batata-Frita Doce",
+        "productDescription": "Batatas Doces Beauregard Cortadas e Fritas (Acompanha Molho Especial).",
+        "productPrice": "22,49"
+      },
+      {
+        "productPicture": "/media/products-pictures/burgers/wedge-cut-fries.jpg",
+        "productName": "Batata-Frita Wedge Cut",
+        "productDescription": "Batatas Inglesas Cortas, em 1/4, e Fritas.",
+        "productPrice": "17,89"
+      }
+    ],
+    "acais": [
+      {
+        "productPicture": "/media/products-pictures/acais/acai.jpg",
+        "productName": "Açaí Puro",
+        "productDescription": "Açaí Puro (500ml).",
+        "productPrice": "22,85"
+      },
+      {
+        "productPicture": "/media/products-pictures/acais/acai-with-kiwi-and-chestnuts.jpg",
+        "productName": "Açaí com Kiwi e Castanhas",
+        "productDescription": "Açaí (350ml) com Pedaços de Kiwi, Castanhas, Granola, Creme de Coco.",
+        "productPrice": "27,50"
+      },
+      {
+        "productPicture": "/media/products-pictures/acais/acai-with-strawberries.jpg",
+        "productName": "Açaí com Morangos, Castanhas",
+        "productDescription": "Açaí (350ml) com Morangos.",
+        "productPrice": "24,00"
+      },
+      {
+        "productPicture": "/media/products-pictures/acais/acai-with-strawberries-and-cream.jpg",
+        "productName": "Açaí com Morangos e Creme",
+        "productDescription": "Açaí (350ml) com Morangos, Castanhas, Granola, Creme.",
+        "productPrice": "26,45"
+      },
+      {
+        "productPicture": "/media/products-pictures/acais/spring-acai.jpg",
+        "productName": "Açaí Primavera",
+        "productDescription": "Açaí (350ml) com Kiwi, Morango, Romã, Pitaia, Granola.",
+        "productPrice": "27,99"
+      }
+    ]
+  }
+}

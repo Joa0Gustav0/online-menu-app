@@ -1,7 +1,7 @@
 import Title from "../Title";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import data from "@/app/ui/Reviews/reviews.json";
+import data from "@/public/reviews.json";
 import ReviewsContainer from "./ReviewsContainer";
 import Button from "../button";
 
