@@ -17,7 +17,7 @@ function notFoundPage() {
         <Image
           src={notFoundPicture}
           alt={"Imagem meramente ilustrativa de um hambúrguer"}
-          className="w-full max-w-[300px] opacity-[.25] blur-[2px]"
+          className="w-full max-w-[250px] opacity-[.25] blur-[2px]"
         />
         <aside>
           <h1 className="text-[36px]">Página Não Encontrada</h1>

@@ -71,8 +71,8 @@ function SideBar( {sidebarActive, setSidebarStatus}: {sidebarActive: boolean, se
             {
               icon: profileIcon,
               altIcon: profileWhiteIcon,
-              text: "Configurações de Perfil",
-              href: "/configuracoes-de-perfil",
+              text: "Configurações do Perfil",
+              href: "/configuracoes-do-perfil",
             },
           ]}
         />
