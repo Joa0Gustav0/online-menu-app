@@ -1,6 +1,7 @@
 {
   "products": {
     "pizzas": [
+      "Pizzas",
       {
         "productPicture": "/media/products-pictures/pizzas/california-pizza.jpg",
         "productName": "Pizza Califórnia",
@@ -63,6 +64,7 @@
       }
     ],
     "burgers": [
+      "Hambúrgueres",
       {
         "productPicture": "/media/products-pictures/burgers/bacon-burger.jpg",
         "productName": "Hambúrguer de Bacon",
@@ -131,6 +133,7 @@
       }
     ],
     "acais": [
+      "Açaís",
       {
         "productPicture": "/media/products-pictures/acais/acai.jpg",
         "productName": "Açaí Puro",
