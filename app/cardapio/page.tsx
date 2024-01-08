@@ -10,6 +10,7 @@ import { useState } from "react";
 import MenuProduct from "../ui/MenuProduct";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import ProductInspection from "../ui/ProductInspection";
 
 function Page() {
   const [filter, setFilter] = useState<string>("Todos");
@@ -34,12 +35,14 @@ function Page() {
           replace(`${path}?${searchParams}`)
           document.body.style.overflowY = "scroll";
         }}
-        className={`fixed top-0 left-0 flex justify-end items-stretch w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
+        className={`fixed top-0 left-0 flex justify-center items-center w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
           {
             "translate-x-[110%]": !searchParams.get("item"),
           }
         )}`}
-      ></div>
+      >
+        <ProductInspection />
+      </div>
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
         <Title text="Bem vindo(a) ao nosso" span="cardápio!" />
         <SearchBar
