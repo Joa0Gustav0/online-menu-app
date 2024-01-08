@@ -8,13 +8,8 @@ import pizzaIcon from "@/public/media/icons/pizza-icon.png";
 import acaiIcon from "@/public/media/icons/acai-icon.png";
 
 import clsx from "clsx";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-function SearchBar() {
-  const path = usePathname();
-  const { replace } = useRouter();
-  const params = new URLSearchParams(useSearchParams());
-
+function SearchBar({search, filter, setFilter}: {search: (val: string) => {}, filter: string, setFilter: (val: string) => {}}) {
   return (
     <label className="flex items-center gap-[10px] w-full max-w-[600px] py-[5.75px] px-[10px] bg-white rounded-[25px]">
       <Image
@@ -30,15 +25,7 @@ function SearchBar() {
         autoComplete="off"
         placeholder="Qual o tamanho da sua fome hoje?"
         className="w-full bg-transparent focus:border-none focus:outline-none"
-        onChange={(e) => {
-          if (e.target.value === "") {
-            params.delete("search");
-            replace(path);
-          } else {
-            params.set("search", e.target.value.toLowerCase());
-          }
-          replace(`${path}?${params}`);
-        }}
+        onChange={(e) => search(e.target.value)}
       />
       {[
         { src: allIcon, param: "Todos" },
@@ -49,15 +36,11 @@ function SearchBar() {
         <Image
           key={"category-icon-" + i}
           src={icon.src}
-          alt={"Ícone representativo da categoria: " + params.get("category")}
+          alt={"Ícone representativo da categoria: " + icon.param}
           className={
             "w-[17.5px] " +
             clsx({
-              hidden:
-                (!params.get("category") &&
-                  icon.param.toLowerCase() !== "todos") ||
-                (params.get("category") &&
-                  params.get("category") !== icon.param.toLowerCase()),
+              "hidden": filter !== icon.param,
             })
           }
         />
@@ -65,8 +48,7 @@ function SearchBar() {
       <select
         className="hover:bg-[#f7f7f7] focus:outline-none focus:border-none"
         onChange={(e) => {
-          params.set("category", e.target.value.toLowerCase());
-          replace(`${path}?${params}`);
+          setFilter(e.target.value);
         }}
       >
         {[
@@ -74,14 +56,9 @@ function SearchBar() {
           { text: "Hambúrgueres", val: "burgers" },
           { text: "Pizzas", val: "pizzas" },
           { text: "Açaís", val: "acais" },
-        ].map((option, i) =>
-          params.get("category") === option.text.toLowerCase() ? (
-            <option key={"opition-" + i} selected>
-              {option.text}
-            </option>
-          ) : (
-            <option key={"opition-" + i}>{option.text}</option>
-          )
+        ].map((option, i) => (
+          <option key={"opition-" + i}>{option.text}</option>
+        )
         )}
       </select>
     </label>

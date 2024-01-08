@@ -9,33 +9,57 @@ import clsx from "clsx";
 import { useState } from "react";
 import MenuProduct from "../ui/MenuProduct";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 function Page() {
   const [filter, setFilter] = useState<string>("Todos");
+  const [search, setSearch] = useState("");
 
   const productsData = data.products;
   const productsCategories = [
-    productsData.pizzas,
     productsData.burgers,
+    productsData.pizzas,
     productsData.acais,
   ];
 
+  const path = usePathname();
+  const searchParams = new URLSearchParams(useSearchParams());
+  const { replace } = useRouter();
+
   return (
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-hidden">
+      <div
+        onClick={() => {
+          searchParams.delete("item");
+          replace(`${path}?${searchParams}`)
+          document.body.style.overflowY = "scroll";
+        }}
+        className={`fixed top-0 left-0 flex justify-end items-stretch w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
+          {
+            "translate-x-[110%]": !searchParams.get("item"),
+          }
+        )}`}
+      ></div>
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
         <Title text="Bem vindo(a) ao nosso" span="cardápio!" />
-        <SearchBar />
+        <SearchBar
+          filter={filter}
+          setFilter={async (val) => setFilter(val)}
+          search={async (searchVal) => setSearch(searchVal)}
+        />
+        <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
+          <h1>Informações</h1>
+          <h1>Item</h1>
+        </aside>
         <ul
           id="menu-list"
-          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll"
+          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll pt-[10px]"
         >
-          <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
-            <h1>Informações</h1>
-            <h1>Item</h1>
-          </aside>
           {productsCategories.map((categorie) =>
             categorie.map((product, i) =>
               typeof product !== "string" ? (
                 <MenuProduct
+                  search={search}
                   filter={filter}
                   key={"menu-product-" + i}
                   param={categorie[0]}
