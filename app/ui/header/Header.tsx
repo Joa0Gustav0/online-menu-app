@@ -22,6 +22,9 @@ function Header() {
 
   const [sidebarActive, setSidebarActive] = useState(false);
 
+  if (sidebarActive) document.body.style.overflowY = "hidden"
+  else document.body.style.overflowY = "scroll"
+
   return (
     <>
       <header

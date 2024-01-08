@@ -24,7 +24,7 @@ function Page() {
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
         <Title text="Bem vindo(a) ao nosso" span="cardápio!" />
         <SearchBar filter={filter} setFilter={async (val) => setFilter(val)} />
-        <ul id="menu-list" className="flex flex-col items-center gap-[26px] h-[50vh] overflow-y-scroll">
+        <ul id="menu-list" className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll">
           <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
             <h1>Informações</h1>
             <h1>Item</h1>

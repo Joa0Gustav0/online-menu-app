@@ -57,16 +57,16 @@ function SideBar( {sidebarActive, setSidebarStatus}: {sidebarActive: boolean, se
         <SideBarLinks setSidebarStatus={() => setSidebarStatus(false)}
           links={[
             {
-              icon: bagIcon,
-              altIcon: bagWhiteIcon,
-              text: "Sacola",
-              href: "/sacola",
-            },
-            {
               icon: burgerIcon,
               altIcon: burgerWhiteIcon,
               text: "Cardápio",
               href: "/cardapio",
+            },
+            {
+              icon: bagIcon,
+              altIcon: bagWhiteIcon,
+              text: "Sacola",
+              href: "/sacola",
             },
             {
               icon: profileIcon,
