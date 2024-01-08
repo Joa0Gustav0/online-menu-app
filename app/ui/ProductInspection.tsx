@@ -1,5 +1,6 @@
 "use client";
 
+import { storageData } from "./StorageData";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import data from "@/public/products.json";
 import Image from "next/image";
@@ -78,7 +79,7 @@ function ProductInspection(  ) {
                 <p className="text-[1.15em] font-semibold">
                   {product.productPrice}
                 </p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pt-[15px]">
                   <div className="flex items-center justify-center gap-[20px] text-[18px] font-bold">
                     <button
                       onClick={() => {
@@ -106,12 +107,14 @@ function ProductInspection(  ) {
                       +
                     </button>
                   </div>
-                  <Button
-                    text={"Adicionar"}
-                    fontSize=""
-                    auto={false}
-                    irregular={true}
-                  />
+                  <div onClick={() => storageData(product, quantity)}>
+                    <Button
+                      text={"Adicionar"}
+                      fontSize=""
+                      auto={false}
+                      irregular={true}
+                    />
+                  </div>
                 </div>
               </aside>
             </div>
