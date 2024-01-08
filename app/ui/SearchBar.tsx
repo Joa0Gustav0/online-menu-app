@@ -15,10 +15,6 @@ function SearchBar() {
   const { replace } = useRouter();
   const params = new URLSearchParams(useSearchParams());
 
-  if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-    console.log("Reloaded")
-  }
-
   return (
     <label className="flex items-center gap-[10px] w-full max-w-[600px] py-[5.75px] px-[10px] bg-white rounded-[25px]">
       <Image
