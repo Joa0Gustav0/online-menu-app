@@ -10,16 +10,14 @@ import acaiIcon from "@/public/media/icons/acai-icon.png";
 import clsx from "clsx";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-function SearchBar({
-  filter,
-  setFilter,
-}: {
-  filter: string;
-  setFilter: (val: string) => {};
-}) {
+function SearchBar() {
   const path = usePathname();
   const { replace } = useRouter();
   const params = new URLSearchParams(useSearchParams());
+
+  if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+    console.log("Reloaded")
+  }
 
   return (
     <label className="flex items-center gap-[10px] w-full max-w-[600px] py-[5.75px] px-[10px] bg-white rounded-[25px]">
@@ -38,11 +36,12 @@ function SearchBar({
         className="w-full bg-transparent focus:border-none focus:outline-none"
         onChange={(e) => {
           if (e.target.value === "") {
+            params.delete("search");
             replace(path);
           } else {
             params.set("search", e.target.value.toLowerCase());
-            replace(`${path}?${params}`);
           }
+          replace(`${path}?${params}`);
         }}
       />
       {[
@@ -52,29 +51,42 @@ function SearchBar({
         { src: acaiIcon, param: "Açaís" },
       ].map((icon, i) => (
         <Image
-          key={"categorie-icon-" + i}
+          key={"category-icon-" + i}
           src={icon.src}
-          alt={"Ícone representativo da categoria: " + filter}
+          alt={"Ícone representativo da categoria: " + params.get("category")}
           className={
             "w-[17.5px] " +
             clsx({
-              hidden: filter !== icon.param,
+              hidden:
+                (!params.get("category") &&
+                  icon.param.toLowerCase() !== "todos") ||
+                (params.get("category") &&
+                  params.get("category") !== icon.param.toLowerCase()),
             })
           }
         />
       ))}
       <select
         className="hover:bg-[#f7f7f7] focus:outline-none focus:border-none"
-        onChange={(e) => setFilter((e.target as HTMLSelectElement).value)}
+        onChange={(e) => {
+          params.set("category", e.target.value.toLowerCase());
+          replace(`${path}?${params}`);
+        }}
       >
         {[
           { text: "Todos", val: "all" },
           { text: "Hambúrgueres", val: "burgers" },
           { text: "Pizzas", val: "pizzas" },
           { text: "Açaís", val: "acais" },
-        ].map((option, i) => (
-          <option key={"opition-" + i}>{option.text}</option>
-        ))}
+        ].map((option, i) =>
+          params.get("category") === option.text.toLowerCase() ? (
+            <option key={"opition-" + i} selected>
+              {option.text}
+            </option>
+          ) : (
+            <option key={"opition-" + i}>{option.text}</option>
+          )
+        )}
       </select>
     </label>
   );

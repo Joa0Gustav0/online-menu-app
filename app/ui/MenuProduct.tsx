@@ -3,11 +3,9 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
 function MenuProduct({
-  filter,
   param,
   product,
 }: {
-  filter: string;
   param: string | {};
   product: {
     productPicture: string;
@@ -22,7 +20,9 @@ function MenuProduct({
     <li
       className={`${clsx({
         hidden:
-          (filter !== "Todos" && param !== filter) ||
+          (searchParams.get("category") &&
+            searchParams.get("category") !== "todos" &&
+            param.toString().toLowerCase() !== searchParams.get("category")) ||
           (searchParams.get("search") !== null &&
             searchParams.get("search") !== "" &&
             product.productName

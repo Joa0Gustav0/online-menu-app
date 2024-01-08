@@ -5,11 +5,9 @@ import blob from "@/public/media/extra/yellow-blob-picture.png";
 import Title from "../ui/Title";
 import SearchBar from "../ui/SearchBar";
 import data from "@/public/products.json";
-import { useState } from "react";
 import MenuProduct from "../ui/MenuProduct";
 
 function Page() {
-  const [filter, setFilter] = useState<string>("Todos");
 
   const productsData = data.products;
   const productsCategories = [
@@ -22,10 +20,7 @@ function Page() {
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-hidden">
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
         <Title text="Bem vindo(a) ao nosso" span="cardápio!" />
-        <SearchBar
-          filter={filter}
-          setFilter={async (val) => setFilter(val)}
-        />
+        <SearchBar />
         <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
           <h1>Informações</h1>
           <h1>Item</h1>
@@ -39,7 +34,6 @@ function Page() {
               typeof product !== "string" ? (
                 <MenuProduct
                   key={"menu-product-" + i}
-                  filter={filter}
                   param={categorie[0]}
                   product={product}
                 />
