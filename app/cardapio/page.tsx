@@ -30,19 +30,13 @@ function Page() {
   return (
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-hidden">
       <div
-        onClick={() => {
-          searchParams.delete("item");
-          replace(`${path}?${searchParams}`)
-          document.body.style.overflowY = "scroll";
-        }}
-        className={`fixed top-0 left-0 flex justify-center items-center w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
+        className={`fixed top-0 left-0 w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
           {
-            "translate-x-[110%]": !searchParams.get("item"),
+            "translate-x-[-110%]": !searchParams.get("item"),
           }
         )}`}
-      >
-        <ProductInspection />
-      </div>
+      ></div>
+      <ProductInspection />
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
         <Title text="Bem vindo(a) ao nosso" span="cardápio!" />
         <SearchBar
@@ -56,7 +50,7 @@ function Page() {
         </aside>
         <ul
           id="menu-list"
-          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll pt-[10px]"
+          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll pt-[10px] pb-[26px]"
         >
           {productsCategories.map((categorie) =>
             categorie.map((product, i) =>

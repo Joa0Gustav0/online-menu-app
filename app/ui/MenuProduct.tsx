@@ -27,7 +27,6 @@ function MenuProduct({
       onClick={() => {
         searchParams.set("item", product.productName.toLowerCase());
         replace(`${path}?${searchParams}`);
-        document.body.style.overflowY = "hidden";
       }}
       className={`${clsx({
         hidden:

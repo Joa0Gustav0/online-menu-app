@@ -22,7 +22,6 @@ function SideBar( {sidebarActive, setSidebarStatus}: {sidebarActive: boolean, se
   return (
     <>
       <div
-        onClick={() => setSidebarStatus(false)}
         className={`fixed top-0 left-0 flex justify-end items-stretch w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
           {
             "translate-x-[110%]": sidebarActive === false,
