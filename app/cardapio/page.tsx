@@ -5,17 +5,17 @@ import blob from "@/public/media/extra/yellow-blob-picture.png";
 import Title from "../ui/Title";
 import SearchBar from "../ui/SearchBar";
 import data from "@/public/products.json";
-import clsx from "clsx";
 import { useState } from "react";
 import MenuProduct from "../ui/MenuProduct";
 
 function Page() {
   const [filter, setFilter] = useState<string>("Todos");
+  const [search, setSearch] = useState<string>("");
 
   const productsData = data.products;
   const productsCategories = [
-    productsData.pizzas,
     productsData.burgers,
+    productsData.pizzas,
     productsData.acais,
   ];
 
@@ -23,17 +23,25 @@ function Page() {
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-hidden">
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
         <Title text="Bem vindo(a) ao nosso" span="cardápio!" />
-        <SearchBar filter={filter} setFilter={async (val) => setFilter(val)} />
-        <ul id="menu-list" className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll">
-          <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
-            <h1>Informações</h1>
-            <h1>Item</h1>
-          </aside>
+        <SearchBar
+          filter={filter}
+          setFilter={async (val) => setFilter(val)}
+          setSearch={async (val) => setSearch(val)}
+        />
+        <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
+          <h1>Informações</h1>
+          <h1>Item</h1>
+        </aside>
+        <ul
+          id="menu-list"
+          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll"
+        >
           {productsCategories.map((categorie) =>
             categorie.map((product, i) =>
               typeof product !== "string" ? (
                 <MenuProduct
                   key={"menu-product-" + i}
+                  search={search}
                   filter={filter}
                   param={categorie[0]}
                   product={product}

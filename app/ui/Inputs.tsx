@@ -50,6 +50,7 @@ function Inputs({
         type="text"
         id={"input-for-" + props.title.toLowerCase()}
         placeholder={props.placeholder}
+        autoComplete="off"
         className="px-[10px] py-[10px] bg-[#f1f1f1] rounded-[2.5px]"
       />
     </label>

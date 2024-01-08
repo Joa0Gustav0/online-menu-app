@@ -2,10 +2,12 @@ import clsx from "clsx";
 import Image from "next/image";
 
 function MenuProduct({
+  search,
   filter,
   param,
   product,
 }: {
+  search: string;
   filter: string;
   param: string | {};
   product: {
@@ -17,7 +19,7 @@ function MenuProduct({
 }) {
   return (
     <li
-      className={`${clsx({ hidden: filter !== "Todos" && param !== filter })} flex justify-between items-center w-full max-w-[600px] mx-[26px] p-[15px] bg-white rounded-[10px] shadow-lg`}
+      className={`${clsx({ hidden: (filter !== "Todos" && param !== filter) || product.productName.toLowerCase().indexOf(search.toLowerCase()) < 0 })} flex justify-between items-center w-full max-w-[600px] mx-[26px] p-[15px] bg-white rounded-[10px] shadow-lg`}
     >
       <aside className="flex flex-col gap-[10px] max-w-[50%]">
         <h1 className="text-[1.2em] font-semibold">{product.productName}</h1>

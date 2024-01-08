@@ -8,14 +8,13 @@ import pizzaIcon from "@/public/media/icons/pizza-icon.png";
 import acaiIcon from "@/public/media/icons/acai-icon.png";
 
 import clsx from "clsx";
-import { useState } from "react";
 
-function SearchBar( {filter, setFilter}: {filter: string; setFilter: (val: string) => {}}) {
+function SearchBar( {setSearch, filter, setFilter}: {setSearch: (inputVal: string) => {} ;filter: string; setFilter: (val: string) => {}}) {
 
   return (
     <label className="flex items-center gap-[10px] w-full max-w-[600px] py-[5.75px] px-[10px] bg-white rounded-[25px]">
       <Image src={magnifyingGlassIcon} alt={"Ícone representativo de uma lupa para interatividade com barra de pesquisa"} className="w-[20px]" />
-      <input type="text" id="search-bar-input" placeholder="Qual o tamanho da sua fome hoje?" className="w-full bg-transparent focus:border-none focus:outline-none" />
+      <input type="text" id="search-bar-input" autoComplete="off" placeholder="Qual o tamanho da sua fome hoje?" className="w-full bg-transparent focus:border-none focus:outline-none" onChange={(e) => setSearch(e.target.value.toString())} />
       {[
         {src: allIcon, param: "Todos"},
         {src: burgerIcon, param: "Hambúrgueres"},
