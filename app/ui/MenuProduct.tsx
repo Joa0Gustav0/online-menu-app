@@ -1,13 +1,12 @@
 import clsx from "clsx";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 function MenuProduct({
-  search,
   filter,
   param,
   product,
 }: {
-  search: string;
   filter: string;
   param: string | {};
   product: {
@@ -17,9 +16,19 @@ function MenuProduct({
     productPrice: string;
   };
 }) {
+  const searchParams = useSearchParams();
+
   return (
     <li
-      className={`${clsx({ hidden: (filter !== "Todos" && param !== filter) || product.productName.toLowerCase().indexOf(search.toLowerCase()) < 0 })} flex justify-between items-center w-full max-w-[600px] mx-[26px] p-[15px] bg-white rounded-[10px] shadow-lg`}
+      className={`${clsx({
+        hidden:
+          (filter !== "Todos" && param !== filter) ||
+          (searchParams.get("search") !== null &&
+            searchParams.get("search") !== "" &&
+            product.productName
+              .toLowerCase()
+              .indexOf(`${searchParams.get("search")}`) < 0),
+      })} flex justify-between items-center w-[600px] max-w-[600px] mx-[26px] p-[15px] bg-white rounded-[10px] shadow-lg hover:scale-[105%] active:scale-[95%] hover:cursor-pointer transition-all duration-[.25s]`}
     >
       <aside className="flex flex-col gap-[10px] max-w-[50%]">
         <h1 className="text-[1.2em] font-semibold">{product.productName}</h1>

@@ -10,7 +10,6 @@ import MenuProduct from "../ui/MenuProduct";
 
 function Page() {
   const [filter, setFilter] = useState<string>("Todos");
-  const [search, setSearch] = useState<string>("");
 
   const productsData = data.products;
   const productsCategories = [
@@ -26,7 +25,6 @@ function Page() {
         <SearchBar
           filter={filter}
           setFilter={async (val) => setFilter(val)}
-          setSearch={async (val) => setSearch(val)}
         />
         <aside className="flex items-center justify-between w-full max-w-[600px] px-[15px] pr-[67.5px] text-[1.2em] font-semibold">
           <h1>Informações</h1>
@@ -34,14 +32,13 @@ function Page() {
         </aside>
         <ul
           id="menu-list"
-          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll"
+          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll pt-[10px]"
         >
           {productsCategories.map((categorie) =>
             categorie.map((product, i) =>
               typeof product !== "string" ? (
                 <MenuProduct
                   key={"menu-product-" + i}
-                  search={search}
                   filter={filter}
                   param={categorie[0]}
                   product={product}
