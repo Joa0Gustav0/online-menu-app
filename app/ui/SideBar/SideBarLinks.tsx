@@ -2,6 +2,7 @@ import { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
 import { secondaryFont } from "../fonts";
+import BagIndex from "./BagIndex";
 
 function SideBarLinks({
   links,
@@ -45,7 +46,7 @@ function SideBarLinks({
             {
               link.text.toLowerCase() === "sacola"
               ? (
-                <span className={`flex justify-center items-center w-[24px] h-[24px] bg-default group-hover:bg-white ${secondaryFont.className} text-white group-hover:text-default rounded-full group-hover:scale-[75%] group-active:scale-[100%] transition-all duration-[.25s]`}>3</span>
+                <BagIndex animate_colors={true} />
               )
               : null
             }

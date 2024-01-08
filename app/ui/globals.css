@@ -29,7 +29,7 @@
 
 #menu-list::-webkit-scrollbar {
   width: 3.5px;
-  background-color: rgba(0, 0, 0, .04);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 #menu-list::-webkit-scrollbar-thumb {
   border: 0;

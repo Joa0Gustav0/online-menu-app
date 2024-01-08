@@ -10,10 +10,10 @@ import acaiIcon from "@/public/media/icons/acai-icon.png";
 import Button from "./button";
 import clsx from "clsx";
 import closeIcon from "@/public/media/icons/close-icon.png";
+import Link from "next/link";
 import { useState } from "react";
 
-function ProductInspection(  ) {
-  
+function ProductInspection() {
   var categories = [
     data.products.burgers,
     data.products.pizzas,
@@ -44,12 +44,18 @@ function ProductInspection(  ) {
               key={"inspection-product"}
               className="relative flex flex-col items-center gap-[10px] w-full max-w-[300px] p-[15px] bg-white rounded-[10px]"
             >
-              <div onClick={() => {
-                searchParams.delete("item");
-                replace(`${path}?${searchParams}`);
-                setQuantity(1);
-              }} className="absolute top-0 right-0 w-[35px] hover:w-[40px] active:w-[35px] p-[10px] hover:p-[12.75px] active:p-[10px] hover:cursor-pointer bg-white rounded-full transition-all duration-[.25s]">
-                <Image src={closeIcon} alt={"Ícone representativo do botão de"} />
+              <div
+                onClick={() => {
+                  searchParams.delete("item");
+                  replace(`${path}?${searchParams}`);
+                  setQuantity(1);
+                }}
+                className="absolute top-0 right-0 w-[35px] hover:w-[40px] active:w-[35px] p-[10px] hover:p-[12.75px] active:p-[10px] hover:cursor-pointer bg-white rounded-full transition-all duration-[.25s]"
+              >
+                <Image
+                  src={closeIcon}
+                  alt={"Ícone representativo do botão de"}
+                />
               </div>
               <Image
                 src={product.productPicture}
@@ -87,9 +93,12 @@ function ProductInspection(  ) {
                           setQuantity(quantity - 1);
                         }
                       }}
-                      className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#c7c7c7] bg-[#f1f1f1] rounded-full transition-all duration-[.25s] ${clsx({
-                        "text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none": quantity > 1
-                      })}`}
+                      className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#c7c7c7] bg-[#f1f1f1] rounded-full transition-all duration-[.25s] ${clsx(
+                        {
+                          "text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none":
+                            quantity > 1,
+                        }
+                      )}`}
                     >
                       -
                     </button>
@@ -100,21 +109,33 @@ function ProductInspection(  ) {
                           setQuantity(quantity + 1);
                         }
                       }}
-                      className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#c7c7c7] bg-[#f1f1f1] rounded-full transition-all duration-[.25s] ${clsx({
-                        "text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none": quantity < 10
-                      })}`}
+                      className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#c7c7c7] bg-[#f1f1f1] rounded-full transition-all duration-[.25s] ${clsx(
+                        {
+                          "text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none":
+                            quantity < 10,
+                        }
+                      )}`}
                     >
                       +
                     </button>
                   </div>
-                  <div onClick={() => storageData(product, quantity)}>
+                  <Link
+                    href={"/sacola"}
+                    onClick={() => {
+                      storageData(product, quantity);
+                      searchParams.delete("item");
+                      replace(`${path}?${searchParams}`);
+                      setQuantity(1);
+                      
+                    }}
+                  >
                     <Button
                       text={"Adicionar"}
                       fontSize=""
                       auto={false}
                       irregular={true}
                     />
-                  </div>
+                  </Link>
                 </div>
               </aside>
             </div>

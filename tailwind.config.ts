@@ -44,7 +44,7 @@ const config: Config = {
       },
       animation: {
         button_hover: "pop linear .25s normal",
-        fade_In: "fade_In linear .25s normal"
+        fade_In: "fade_In linear .25s normal",
       }
     },
   },

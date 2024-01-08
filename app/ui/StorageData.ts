@@ -14,8 +14,26 @@ export function storageData(
     return;
   }
 
-  const csBag: {}[] = JSON.parse((localStorage.getItem("@burg3r_Is_bag") as string));
-  csBag.push({product: target, units: quantity})
-  localStorage.setItem("@burg3r_Is_bag", JSON.stringify(csBag));
-  console.log("item adicionado à sacola!")
+  const csBag: {product: {
+    productPicture: string;
+    productName: string;
+    productDescription: string;
+    productPrice: string;
+  }, units: number}[] = JSON.parse((localStorage.getItem("@burg3r_Is_bag") as string));
+
+  var alreadyAdded = false;
+
+  csBag.forEach(onBag => {
+    if ((onBag.product.productName === target.productName)) {
+      onBag.units = onBag.units + quantity;
+      localStorage.setItem("@burg3r_Is_bag", JSON.stringify(csBag));
+      alreadyAdded = true;
+    }
+  })
+
+  if (alreadyAdded === false) {
+    csBag.push({product: target, units: quantity})
+    localStorage.setItem("@burg3r_Is_bag", JSON.stringify(csBag));
+  }
+  
 }
