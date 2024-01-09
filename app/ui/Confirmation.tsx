@@ -30,7 +30,7 @@ function Confirmation({
 
   return (
     <div
-      className={`fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-[150] flex gap-[15px] min-w-[317.5px] w-fit bg-white p-[15px] rounded-[10px] overflow-y-auto transition-all duration-[1s] ${clsx(
+      className={`fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-[150] flex gap-[15px] min-w-[317.5px] w-fit bg-white p-[15px] rounded-[10px] overflow-y-auto overflow-x-hidden transition-all duration-[1s] ${clsx(
         {
           "left-[-100%] opacity-0": orderStatus.ordered === false,
         }

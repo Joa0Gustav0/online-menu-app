@@ -51,7 +51,7 @@ function Page() {
         </aside>
         <ul
           id="menu-list"
-          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-scroll pt-[10px] pb-[26px]"
+          className="flex flex-col items-center gap-[26px] h-[50vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]"
         >
           {productsCategories.map((categorie) =>
             categorie.map((product, i) =>
