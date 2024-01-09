@@ -67,6 +67,7 @@ function Inputs({
         ) : null}
       </div>
       <input
+        disabled={value ? true : undefined}
         value={value ? value : undefined}
         autoComplete="off"
         type="text"

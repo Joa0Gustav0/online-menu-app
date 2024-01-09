@@ -13,8 +13,6 @@ export function storageBagData(
       "@burg3r_Is_bag",
       JSON.stringify([{ product: target, units: quantity, obs: obs }])
     );
-    console.log("created @burg3r_Is_bag");
-    console.log("item adicionado à sacola!");
     return;
   }
 
@@ -53,7 +51,8 @@ const storageProfileSettings = (data: {
   endereço: string;
 }) => {
   localStorage.setItem("@burg3r_Is_ProfileSettings", JSON.stringify(data));
-  console.log(`Olá, ${data.nome}! Você foi registrado(a)!`);
+  console.log(`Olá, ${data.nome}! Agora você possui um registro!`);
+  alert(`🍔💬 Olá, ${data.nome}! Agora você possui um registro!`)
 };
 
 const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQ";

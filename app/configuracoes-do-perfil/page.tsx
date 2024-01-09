@@ -6,6 +6,8 @@ import Inputs from "../ui/Inputs";
 import { validateProfileSettings } from "../ui/data";
 import clsx from "clsx";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import editIcon from "@/public/media/icons/edit-icon.png";
 
 function Page() {
 
@@ -20,7 +22,18 @@ function Page() {
       <div className="flex flex-col items-center gap-[26px] w-full max-w-[1115px]">
         <Title text="Essas são as suas" span="informações!" />
         <div className="flex flex-col gap-[20px] w-full max-w-[525px] p-[20px] m-auto bg-white rounded-[10px] shadow-xl">
-          <p className="font-semibold">Status: {regSts !== null ? (<span className="font-medium text-[#8fc216]">Registrado.</span>) : (<span className="font-medium text-pizza">Não Registrado.</span>)}</p>
+          <div className="flex items-center justify-between w-full">
+            <p className="font-semibold">Status: {regSts !== null ? (<span className="font-medium text-[#8fc216]">Registrado.</span>) : (<span className="font-medium text-pizza">Não Registrado.</span>)}</p>
+            <abbr onClick={() => {
+              var res = confirm("🍔💬 Fazer isso removerá as sua informações de perfil atuais para que você insira novas. Deseja continuar com a ação?")
+              if (res) localStorage.removeItem("@burg3r_Is_ProfileSettings");
+              alert("🍔💬 Você não possui mais registro. Se for adicionar novas informações de perfil, nunca esqueça-as de salvar!")
+            }} title="Editar Informações do Perfil" className={`max-w-[35px] border rounded-[7.5px] border-default hover:cursor-pointer hover:animate-button_hover hover:scale-[115%] active:scale-[85%] transition-all duration-[.25s] ${clsx({
+              "hidden": regSts === null,
+            })}`}>
+              <Image src={editIcon} alt="Ícone representativo da ação: Editar" />
+            </abbr>
+          </div>
           {[
             {
               title: "Nome",
