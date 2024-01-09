@@ -3,6 +3,8 @@
 import BagProduct from "../ui/BagProduct";
 import Title from "../ui/Title";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import burgerPicture from "@/public/media/sections-pictures/hero/hamburguer-hero-picture.png";
 
 function Page() {
   type onBag = {
@@ -39,11 +41,13 @@ function Page() {
         </aside>
         <ul
           id="menu-list"
-          className="flex flex-col items-center w-full max-w-[700px] px-[15px] gap-[26px] h-[50vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]"
+          className={`flex flex-col ${onBag.length < 1 ? "justify-center" : ""} items-center w-full max-w-[700px] px-[15px] gap-[26px] h-[50vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
         >
-          {onBag.map((item, i) => (
-            <BagProduct key={"item-" + i} item={item} />
-          ))}
+          {
+            onBag.length > 0 ? onBag.map((item, i) => (
+              <BagProduct key={"item-" + i} item={item} />
+            )) : (<p className="text-[1.25em] text-center"><Image src={burgerPicture} alt={"Imagem de um hambúrguer"} className="w-full max-w-[100px] m-auto opacity-[.2] blur-[2px]"/>Sua sacola está <span className="text-default font-semibold">vazia!</span> 🍔💬</p>)
+          }
         </ul>
       </div>
     </main>
