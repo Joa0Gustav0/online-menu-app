@@ -12,6 +12,8 @@ import clsx from "clsx";
 import closeIcon from "@/public/media/icons/close-icon.png";
 import Link from "next/link";
 import { useState } from "react";
+import DivisionLine from "./DivisionLine";
+import Inputs from "./Inputs";
 
 function ProductInspection() {
   var categories = [
@@ -29,7 +31,7 @@ function ProductInspection() {
   return (
     <div
       className={
-        "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[.5s] z-[150] " +
+        "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit max-h-[100vh] overflow-y-auto transition-all duration-[.5s] z-[150] " +
         clsx({
           "-left-1/2": !searchParams.get("item"),
         })
@@ -85,6 +87,8 @@ function ProductInspection() {
                 <p className="text-[1.15em] font-semibold">
                   {product.productPrice}
                 </p>
+                {/* <h1 className="text-[1.15em] font-semibold">Observações</h1> */}
+                <Inputs props={{title: "Observações", placeholder: "Alguma observação?", infos: false}} />
                 <div className="flex items-center justify-between pt-[15px]">
                   <div className="flex items-center justify-center gap-[20px] text-[18px] font-bold">
                     <button
@@ -122,7 +126,7 @@ function ProductInspection() {
                   <Link
                     href={"/sacola"}
                     onClick={() => {
-                      storageData(product, quantity);
+                      storageData(product, quantity, (document.getElementById("input-for-observações") as HTMLInputElement).value);
                       searchParams.delete("item");
                       replace(`${path}?${searchParams}`);
                       setQuantity(1);
