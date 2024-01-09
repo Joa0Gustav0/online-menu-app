@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useState } from "react";
 import DivisionLine from "./DivisionLine";
 import Inputs from "./Inputs";
+import Confirmation from "./Confirmation";
 
 function ProductInspection() {
   var categories = [
@@ -28,12 +29,15 @@ function ProductInspection() {
   const searchParams = new URLSearchParams(useSearchParams());
   const { replace } = useRouter();
 
+  const [ordered, setOrdered] = useState(false);
+
   return (
+    <>
     <div
       className={
         "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit max-h-[100vh] overflow-y-auto transition-all duration-[.5s] z-[150] " +
         clsx({
-          "-left-1/2": !searchParams.get("item"),
+          "-left-[350px] opacity-0": !searchParams.get("item") || ordered === true,
         })
       }
     >
@@ -44,13 +48,14 @@ function ProductInspection() {
             searchParams.get("item")?.toLowerCase() ? (
             <div
               key={"inspection-product"}
-              className="relative flex flex-col items-center gap-[10px] w-full max-w-[300px] p-[15px] bg-white rounded-[10px]"
+              className="relative flex flex-col items-center gap-[10px] w-full max-w-[300px] overflow-x-hidden p-[15px] bg-white rounded-[10px]"
             >
               <div
                 onClick={() => {
                   searchParams.delete("item");
                   replace(`${path}?${searchParams}`);
                   setQuantity(1);
+                  (document.getElementById("input-for-observações") as HTMLInputElement).value = "";
                 }}
                 className="absolute top-0 right-0 w-[35px] hover:w-[40px] active:w-[35px] p-[10px] hover:p-[12.75px] active:p-[10px] hover:cursor-pointer bg-white rounded-full transition-all duration-[.25s]"
               >
@@ -87,7 +92,6 @@ function ProductInspection() {
                 <p className="text-[1.15em] font-semibold">
                   {product.productPrice}
                 </p>
-                {/* <h1 className="text-[1.15em] font-semibold">Observações</h1> */}
                 <Inputs props={{title: "Observações", placeholder: "Alguma observação?", infos: false}} />
                 <div className="flex items-center justify-between pt-[15px]">
                   <div className="flex items-center justify-center gap-[20px] text-[18px] font-bold">
@@ -123,14 +127,12 @@ function ProductInspection() {
                       +
                     </button>
                   </div>
-                  <Link
-                    href={"/sacola"}
+                  <div
                     onClick={() => {
                       storageData(product, quantity, (document.getElementById("input-for-observações") as HTMLInputElement).value);
-                      searchParams.delete("item");
-                      replace(`${path}?${searchParams}`);
+                      setOrdered(true);
                       setQuantity(1);
-                      
+                      (document.getElementById("input-for-observações") as HTMLInputElement).value = "";
                     }}
                   >
                     <Button
@@ -139,7 +141,7 @@ function ProductInspection() {
                       auto={false}
                       irregular={true}
                     />
-                  </Link>
+                  </div>
                 </div>
               </aside>
             </div>
@@ -147,6 +149,8 @@ function ProductInspection() {
         )
       )}
     </div>
+    <Confirmation orderStatus={{ordered: ordered, rmOrdered: async (val) => setOrdered(val)}} resetQuantity={async (val) => setQuantity(val)} quantity={quantity} />
+    </>
   );
 }
 
