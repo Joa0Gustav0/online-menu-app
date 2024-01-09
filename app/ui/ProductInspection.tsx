@@ -1,6 +1,6 @@
 "use client";
 
-import { storageData } from "./StorageData";
+import { storageBagData } from "./data";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import data from "@/public/products.json";
 import Image from "next/image";
@@ -129,7 +129,7 @@ function ProductInspection() {
                   </div>
                   <div
                     onClick={() => {
-                      storageData(product, quantity, (document.getElementById("input-for-observações") as HTMLInputElement).value);
+                      storageBagData(product, quantity, (document.getElementById("input-for-observações") as HTMLInputElement).value);
                       setOrdered(true);
                       setQuantity(1);
                       (document.getElementById("input-for-observações") as HTMLInputElement).value = "";

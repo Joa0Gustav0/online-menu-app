@@ -7,12 +7,14 @@ import clsx from "clsx";
 
 function Inputs({
   props,
+  value
 }: {
   props: {
     title: string;
     placeholder: string;
     infos: Array<string> | boolean;
   };
+  value?: string;
 }) {
   const [infosActive, setInfosActive] = useState(false);
 
@@ -65,6 +67,8 @@ function Inputs({
         ) : null}
       </div>
       <input
+        value={value ? value : undefined}
+        autoComplete="off"
         type="text"
         id={"input-for-" + props.title.toLowerCase()}
         placeholder={props.placeholder}
