@@ -57,7 +57,7 @@ function Page() {
             id="menu-list"
             className={`flex flex-col ${
               onBag.length < 1 ? "justify-center" : ""
-            } items-center w-full max-w-[700px] px-[15px] gap-[26px] h-[50vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
+            } items-center w-full max-w-[700px] px-[15px] gap-[26px] h-[75vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
           >
             {onBag.length > 0 ? (
               onBag.map((item, i) => (

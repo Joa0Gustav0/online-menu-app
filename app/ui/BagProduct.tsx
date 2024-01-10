@@ -39,13 +39,11 @@ function BagProduct({
             if (item.units > 1) {
               item.units--;
             } else {
-              bag.splice(i, 1)
+              bag.splice(i, 1);
             }
             break;
           case "sum":
-            if (item.units < 10) {
-              item.units++;
-            }
+            item.units++;
             break;
         }
       }
@@ -82,27 +80,42 @@ function BagProduct({
             onClick={() => {
               setQuantity(item.product.productName, "subtract");
             }}
-            className={`group flex justify-center items-center ${clsx({"w-[15px] h-[15px] p-[15px]": item.units > 1, "p-[10px]": item.units <= 1})} text-[#fbc00f] bg-white hover:text-white hover:bg-default ${clsx({"hover:bg-pizza": item.units <= 1})} active:scale-[85%] active:transition-none rounded-full transition-all duration-[.25s]`}
+            className={`group flex justify-center items-center ${clsx({
+              "w-[15px] h-[15px] p-[15px]": item.units > 1,
+              "p-[10px]": item.units <= 1,
+            })} text-[#fbc00f] bg-white hover:text-white hover:bg-default ${clsx(
+              { "hover:bg-pizza": item.units <= 1 }
+            )} active:scale-[85%] active:transition-none rounded-full transition-all duration-[.25s]`}
           >
             {item.units > 1 ? "-" : null}
-            <Image src={trashIcon} alt="Ícone representativo: deletar" className={`group-hover:hidden w-[17.5px] ${clsx({"hidden group-hover:hidden": item.units > 1})}`} />
-            <Image src={trashWhiteIcon} alt="Ícone representativo: deletar" className="hidden group-hover:block w-[17.5px]" />
+            <Image
+              src={trashIcon}
+              alt="Ícone representativo: deletar"
+              className={`group-hover:hidden w-[17.5px] ${clsx({
+                "hidden group-hover:hidden": item.units > 1,
+              })}`}
+            />
+            <Image
+              src={trashWhiteIcon}
+              alt="Ícone representativo: deletar"
+              className="hidden group-hover:block w-[17.5px]"
+            />
           </button>
           <p className="w-fit text-center font-semibold">{item.units} Uni.</p>
           <button
             onClick={() => setQuantity(item.product.productName, "sum")}
-            className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#c7c7c7] bg-[#f1f1f1] rounded-full transition-all duration-[.25s] ${clsx(
-              {
-                "text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none hover:cursor-pointer":
-                  item.units < 10,
-                  "hover:cursor-not-allowed": item.units >= 10 
-              }
-            )}`}
+            className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none rounded-full transition-all duration-[.25s]`}
           >
             +
           </button>
         </div>
-        <h1 className="px-[15px] font-bold ">R$24,85</h1>
+        <h1 className="px-[15px] font-bold ">
+          R$
+          {(item.units * Number(item.product.productPrice.replace(",", ".")))
+            .toFixed(2)
+            .toString()
+            .replace(".", ",")}
+        </h1>
       </div>
     </li>
   );

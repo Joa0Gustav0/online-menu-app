@@ -87,7 +87,7 @@ function Confirmation({
                         {item.product.productName} ({quantity} Uni.)
                       </h1>
                       <p>{item.product.productDescription}</p>
-                      <p className="font-semibold">R${Number(item.product.productPrice.replace(",", ".")) * quantity}</p>
+                      <p className="font-semibold">R${(Number(item.product.productPrice.replace(",", ".")) * quantity).toFixed(2).toString().replace(".", ",")}</p>
                     </div>
                   </aside>
                   <div className="flex flex-row-reverse min-w-[310px] justify-end items-center gap-[20px]">

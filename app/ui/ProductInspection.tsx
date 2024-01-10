@@ -113,16 +113,9 @@ function ProductInspection() {
                     <p className="w-[16px]">{quantity}</p>
                     <button
                       onClick={() => {
-                        if (quantity < 10) {
-                          setQuantity(quantity + 1);
-                        }
+                        setQuantity(quantity + 1);
                       }}
-                      className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#c7c7c7] bg-[#f1f1f1] rounded-full transition-all duration-[.25s] ${clsx(
-                        {
-                          "text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none":
-                            quantity < 10,
-                        }
-                      )}`}
+                      className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none": rounded-full transition-all duration-[.25s]`}
                     >
                       +
                     </button>
