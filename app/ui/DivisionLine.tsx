@@ -1,6 +1,6 @@
 function DivisionLine() {
   return (
-    <div className="w-full h-[2px] bg-[rgba(0,0,0,.1)] my-[20px]"></div>
+    <div className="w-full border-b border-[rgba(0,0,0,.1)] my-[10px]"></div>
   );
 }
 

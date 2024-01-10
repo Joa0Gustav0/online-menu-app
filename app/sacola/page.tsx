@@ -37,14 +37,14 @@ function Page() {
 
   return (
     <>
-      {/* <PaymentTab onBag={onBag} />
+      <PaymentTab onBag={onBag} />
       <div
         className={`fixed top-0 left-0 w-full min-h-[-webkit-fill-available] h-screen bg-[rgba(0,0,0,.25)] z-[140] transition-all duration-[.5s] ${clsx(
           {
             "translate-x-[-110%]": 2 + 2 === 3,
           }
         )}`}
-      ></div> */}
+      ></div>
       <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5]">
         <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
           <Title text={"Essas é a sua"} span="sacola!" />
