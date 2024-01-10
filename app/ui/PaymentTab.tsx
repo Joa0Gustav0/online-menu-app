@@ -10,6 +10,8 @@ import clsx from "clsx";
 import cashIcon from "@/public/media/icons/money-icon.png";
 import closeIcon from "@/public/media/icons/close-icon.png";
 import Inputs from "./Inputs";
+import emailjs from "@emailjs/browser";
+import { redirect } from "next/navigation";
 
 function PaymentTab({
   setOnPayment,
@@ -56,24 +58,119 @@ function PaymentTab({
   });
 
   const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(
-    localStorage.getItem("@burg3r_Is_method") !== null ? (localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp") : undefined
+    localStorage.getItem("@burg3r_Is_method") !== null
+      ? (localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp")
+      : undefined
   );
 
-  function validateMethod() {
-    const res = confirm(
-      "🍔💬 Este dispositivo possui acesso ao 'WhatsApp'? Para confirmar isso, você será direcionado ao WhatsApp onde aparecerá um código de verificação. Copie-o no campo 'Verificação' que aparecerá próximo ao botão 'confirmar pedido'."
-    );
+  function sendEmail(type: "confirmation" | "token", token?: string) {
+    let templateID;
+    let templateParams;
+    switch (type) {
+      case "confirmation":
+        templateID = "template_59h9i9d";
+        templateParams = {
+          customer_email: regInfos?.email,
+          customer_name: regInfos?.nome,
+          customer_address: regInfos?.endereço,
+          subtotal_price: subtotal.toFixed(2).toString().replace(".", ","),
+          service_price: ((1 / 100) * subtotal)
+            .toFixed(2)
+            .toString()
+            .replace(".", ","),
+          total_price: (subtotal + (1 / 100) * subtotal)
+            .toFixed(2)
+            .toString()
+            .replace(".", ","),
+          burger_url: "its.burger.vercel.app",
+          date: `${
+            new Date().getDate() < 10
+              ? `0` + new Date().getDate()
+              : new Date().getDate()
+          }/${
+            new Date().getMonth() < 9
+              ? `0` + (new Date().getMonth() + 1)
+              : new Date().getMonth() + 1
+          }/${new Date().getFullYear()}`,
+          time: `${
+            new Date().getHours() < 10
+              ? `0` + new Date().getHours()
+              : new Date().getHours()
+          }:${
+            new Date().getMinutes() < 10
+              ? `0` + new Date().getMinutes()
+              : new Date().getMinutes()
+          }`,
+          year: `${new Date().getFullYear()}`,
+        };
+        break;
+      case "token":
+        templateID = "template_0v3qnbr";
+        templateParams = {
+          customer_email: regInfos?.email,
+          burger_url: "its.burger.vercel.app",
+          date: `${
+            new Date().getDate() < 10
+              ? `0` + new Date().getDate()
+              : new Date().getDate()
+          }/${
+            new Date().getMonth() < 9
+              ? `0` + (new Date().getMonth() + 1)
+              : new Date().getMonth() + 1
+          }/${new Date().getFullYear()}`,
+          time: `${
+            new Date().getHours() < 10
+              ? `0` + new Date().getHours()
+              : new Date().getHours()
+          }:${
+            new Date().getMinutes() < 10
+              ? `0` + new Date().getMinutes()
+              : new Date().getMinutes()
+          }`,
+          tokenCode: token,
+          year: `${new Date().getFullYear()}`,
+        };
+        break;
+    }
+    emailjs.init("-FWzWsm_uOI05l0sp");
+    emailjs.send("service_ats1fbz", templateID, templateParams);
+  }
+
+  function validateMethod(method: "email" | "whatsapp") {
+    var res;
+    switch (method) {
+      case "email":
+        res = confirm(
+          "🍔💬 O seu email realmente é válido? Para confirmar isso, enviaremos para seu email um código de verificação! Copie-o no campo 'Verificação' que aparecerá próximo ao botão 'confirmar pedido'."
+        );
+        break;
+      case "whatsapp":
+        res = confirm(
+          "🍔💬 Este dispositivo possui acesso ao 'WhatsApp'? Para confirmar isso, você será direcionado ao WhatsApp onde aparecerá um código de verificação. Copie-o no campo 'Verificação' que aparecerá próximo ao botão 'confirmar pedido'."
+        );
+        break;
+    }
     if (!res) {
       return;
     }
-    setMethod("whatsapp");
-    localStorage.setItem("@burg3r_Is_method", "whatsapp")
+    setMethod(method);
+    localStorage.setItem("@burg3r_Is_method", method);
     const token = crypto.randomUUID();
     localStorage.setItem("@burg3r_Is_last_code", token);
-    open(
-      `https://api.whatsapp.com/send?phone=55${regInfos?.whatsapp}&text=%F0%9F%8D%94%20Ol%C3%A1%21%20A%20Burger%20informa%3A%0A%0AO%20seu%20c%C3%B3digo%20de%20verifica%C3%A7%C3%A3o%20%C3%A9%3A%0A${token}%0A%0A%F0%9F%92%A1%20Esse%20c%C3%B3digo%20ficar%C3%A1%20ativo%20permanentemente%20para%20uso%2C%20at%C3%A9%20que%20voc%C3%AA%20solicite%20outro.&source=&data=`,
-      "_blank"
-    );
+    switch (method) {
+      case "email":
+        sendEmail("token", token);
+        alert(
+          "🍔💬 Voilà! Se esse realmente é um email válido, o código foi enviado!"
+        );
+        break;
+      case "whatsapp":
+        open(
+          `https://api.whatsapp.com/send?phone=55${regInfos?.whatsapp}&text=%F0%9F%8D%94%20Ol%C3%A1%21%20A%20Burger%20informa%3A%0A%0AO%20seu%20c%C3%B3digo%20de%20verifica%C3%A7%C3%A3o%20%C3%A9%3A%0A${token}%0A%0A%F0%9F%92%A1%20Esse%20c%C3%B3digo%20ficar%C3%A1%20ativo%20permanentemente%20para%20uso%2C%20at%C3%A9%20que%20voc%C3%AA%20solicite%20outro.&source=&data=`,
+          "_blank"
+        );
+        break;
+    }
   }
 
   return (
@@ -175,14 +272,9 @@ function PaymentTab({
             {["Email", "Whatsapp"].map((elem, i) => (
               <button
                 key={"method-" + i}
-                onClick={
-                  elem === "Email"
-                    ? () => {
-                      setMethod("email")
-                      localStorage.setItem("@burg3r_Is_method", "email")
-                    }
-                    : () => validateMethod()
-                }
+                onClick={() => {
+                  validateMethod(elem.toLowerCase() as "email" | "whatsapp");
+                }}
                 className={`w-full p-[5px] rounded-[5px] hover:scale-[105%] active:scale-[95%] transition-all duration-[.25s] ${clsx(
                   {
                     "bg-default text-white hover:bg-default":
@@ -196,7 +288,7 @@ function PaymentTab({
               </button>
             ))}
           </div>
-          {method === "whatsapp" ? (
+          {method !== undefined ? (
             <div className="mb-[10px]">
               <Inputs
                 props={{
@@ -205,7 +297,16 @@ function PaymentTab({
                   infos: false,
                 }}
               />
-              <p onClick={() => alert(`🍔💬 Se não recebeu um código você pode solicitar um novo clicando em algum dos botões de seleção de meio de comunicação. Entretanto, o preenchimento incorreto do seu perfil pode estar ocasionando esse não recebimento, neste caso, edite seu perfil.`)} className="w-fit text-[.8em] font-medium text-default mt-[5px] underline hover:cursor-pointer active:opacity-50">Não recebeu um código?!</p>
+              <p
+                onClick={() =>
+                  alert(
+                    `🍔💬 Se não recebeu um código você pode solicitar um novo clicando em algum dos botões de seleção de meio de comunicação. Entretanto, o preenchimento incorreto do seu perfil pode estar ocasionando esse não recebimento, neste caso, edite seu perfil.`
+                  )
+                }
+                className="w-fit text-[.8em] font-medium text-default mt-[5px] underline hover:cursor-pointer active:opacity-50"
+              >
+                Não recebeu um código?!
+              </p>
             </div>
           ) : null}
           <p className="text-[.8em] text-[#636363] font-medium text-center">
@@ -220,15 +321,43 @@ function PaymentTab({
       <div className="absolute bottom-[-1px] left-0 w-full p-[15px] bg-white rounded-[10px]">
         <div
           onClick={() => {
-            if (method === "whatsapp") {
-              if ((document.getElementById("input-for-" + "Verificação".toLowerCase()) as HTMLInputElement).value === "") {
-                alert("🍔💬 Você precisa informar o código de verificação. Se quiser, você pode solicitar um novo clicando no botão 'WhatsApp' novamente.")
-                return;
+            if (
+              (
+                document.getElementById(
+                  "input-for-" + "Verificação".toLowerCase()
+                ) as HTMLInputElement
+              ).value === ""
+            ) {
+              alert(
+                "🍔💬 Você precisa informar o código de verificação. Se quiser, você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
+              );
+              return;
+            } else if (
+              localStorage.getItem("@burg3r_Is_last_code") !==
+              (
+                document.getElementById(
+                  "input-for-" + "Verificação".toLowerCase()
+                ) as HTMLInputElement
+              ).value
+            ) {
+              alert(
+                "🍔💬 O código de verificação inserido está incorreto. Você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
+              );
+              return;
+            } else if (
+              localStorage.getItem("@burg3r_Is_last_code") ===
+              (
+                document.getElementById(
+                  "input-for-" + "Verificação".toLowerCase()
+                ) as HTMLInputElement
+              ).value
+            ) {
+              switch (method) {
+                case "email":
+                  sendEmail("confirmation");
+                  break;
               }
-              if (localStorage.getItem("@burg3r_Is_last_code") !== (document.getElementById("input-for-" + "Verificação".toLowerCase()) as HTMLInputElement).value) {
-                alert("🍔💬 O código de verificação inserido está incorreto. Você pode solicitar um novo clicando no botão 'WhatsApp' novamente.");
-                return;
-              }
+              return;
             }
           }}
         >
