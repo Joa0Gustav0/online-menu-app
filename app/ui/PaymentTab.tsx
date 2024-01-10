@@ -8,10 +8,14 @@ import Image from "next/image";
 import Button from "./button";
 import clsx from "clsx";
 import cashIcon from "@/public/media/icons/money-icon.png";
+import { validateMethod } from "./data";
+import closeIcon from "@/public/media/icons/close-icon.png";
 
 function PaymentTab({
+  setOnPayment,
   onBag,
 }: {
+  setOnPayment: (val: false) => {};
   onBag: Array<{
     product: {
       productPicture: string;
@@ -56,22 +60,31 @@ function PaymentTab({
   });
 
   const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(
-    "email"
+    undefined
   );
 
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[350px] transition-all duration-[.5s] z-[150] rounded-[10px]">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[350px] transition-all duration-[.5s] z-[150] rounded-[10px]">
+      <div className="absolute top-[-1px] left-0 w-full p-[15px] z-[10] bg-white rounded-[10px] overflow-hidden">
+        <div
+          onClick={() => setOnPayment(false)}
+          className="absolute top-0 right-0 w-[35px] hover:w-[40px] active:w-[35px] p-[10px] hover:p-[12.75px] active:p-[10px] hover:cursor-pointer bg-white hover:bg-default active:bg-white rounded-full rounded-tr-[10px] transition-all duration-[.25s]"
+        >
+          <Image src={closeIcon} alt={"Ícone representativo do botão de"} />
+        </div>
+        <Title text="Estamos" span="Quase Lá!" small={true} />
+      </div>
       <div
         key={"inspection-product"}
         className="tab relative flex flex-col items-center gap-[10px] overflow-x-hidden p-[15px] h-fit max-h-[95vh] pb-[65px] pt-[50px] overflow-y-auto font-semibold bg-white rounded-[10px]"
       >
-        <div className="absolute top-[-1px] left-0 w-full p-[15px] bg-white rounded-[10px]">
-          <Title text="Estamos" span="Quase Lá!" small={true} />
-        </div>
         <DivisionLine />
         <div className="flex justify-between items-center w-full mb-[15px]">
           <h1 className="text-[1.25em]">Informações Pessoais</h1>
-          <Link href={"/configuracoes-do-perfil"} className="text-default">
+          <Link
+            href={"/configuracoes-do-perfil"}
+            className="text-default hover:underline"
+          >
             Alterar
           </Link>
         </div>
@@ -153,32 +166,8 @@ function PaymentTab({
                   elem === "Email"
                     ? () => setMethod("email")
                     : () => {
-                        const proceed = confirm(
-                          "🍔💬 Para confirmar que você realmente está utilizando um dispositivo com acesso à aplicação 'WhatsApp', você será direcionado ao WhatsApp onde aparecerá um código de verificação que você precisará copiar na próxima caixa de diálogo (O mais rápido: Antes que a página recarregue.). Deseja continuar com a ação?"
-                        );
-                        if (!proceed) {
-                          return;
-                        }
-                        const token = crypto.randomUUID();
-                        open(
-                          `https://api.whatsapp.com/send?phone=55${regInfos?.whatsapp}&text=%F0%9F%8D%94%20Ol%C3%A1%21%20A%20Burger%20informa%3A%0A%0AO%20seu%20c%C3%B3digo%20de%20verifica%C3%A7%C3%A3o%20%C3%A9%3A%0A${token}&source=&data=`,
-                          "_blank"
-                        );
-                        const res = prompt(
-                          "🍔💬 Copie aqui o código de verificação aparecido em seu WhatsApp! Se não recebeu, provavelmente não possui acesso ao WhatsApp neste dispositivo, ou não informou o número de contato correto (Neste caso, tente editar suas informações de perfil)."
-                        );
-                        if (res !== null) {
-                          if (res === token) {
-                            setMethod("whatsapp");
-                            alert(
-                              "🍔💬 Código de verificação aceito! Pronto! Agora você pode continuar com o seu pedido!"
-                            );
-                          } else {
-                            alert(
-                              "🍔💬 O código inserido não coincide com o código de verificação aparecido em seu WhatsApp."
-                            );
-                          }
-                        }
+                        const proceed = validateMethod(regInfos);
+                        if (proceed) setMethod("whatsapp");
                       }
                 }
                 className={`w-full p-[5px] rounded-[5px] hover:scale-[105%] active:scale-[95%] transition-all duration-[.25s] ${clsx(
@@ -204,12 +193,21 @@ function PaymentTab({
         </div>
       </div>
       <div className="absolute bottom-[-1px] left-0 w-full p-[15px] bg-white rounded-[10px]">
-        <Button
-          text={"Confirmar Pedido | R$" + "83,46"}
-          auto={true}
-          irregular={true}
-          fontSize="16px"
-        />
+        <div
+          onClick={() => {
+            if (method === undefined)
+              alert(
+                "🍔💬 Antes de executar esta ação, você precisa escolher um meio de comunicação para receber a confirmação/detalhes de seu pedido."
+              );
+          }}
+        >
+          <Button
+            text={"Confirmar Pedido | R$" + "83,46"}
+            auto={true}
+            irregular={true}
+            fontSize="16px"
+          />
+        </div>
       </div>
     </div>
   );
