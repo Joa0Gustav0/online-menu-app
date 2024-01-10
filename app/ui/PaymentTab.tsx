@@ -8,8 +8,8 @@ import Image from "next/image";
 import Button from "./button";
 import clsx from "clsx";
 import cashIcon from "@/public/media/icons/money-icon.png";
-import { validateMethod } from "./data";
 import closeIcon from "@/public/media/icons/close-icon.png";
+import Inputs from "./Inputs";
 
 function PaymentTab({
   setOnPayment,
@@ -50,18 +50,31 @@ function PaymentTab({
       setSubtotal(val);
     }
 
-    if (
-      regInfos !==
+    setRegInfos(
       JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-    )
-      setRegInfos(
-        JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-      );
+    );
   });
 
   const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(
-    undefined
+    localStorage.getItem("@burg3r_Is_method") !== null ? (localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp") : undefined
   );
+
+  function validateMethod() {
+    const res = confirm(
+      "🍔💬 Este dispositivo possui acesso ao 'WhatsApp'? Para confirmar isso, você será direcionado ao WhatsApp onde aparecerá um código de verificação. Copie-o no campo 'Verificação' que aparecerá próximo ao botão 'confirmar pedido'."
+    );
+    if (!res) {
+      return;
+    }
+    setMethod("whatsapp");
+    localStorage.setItem("@burg3r_Is_method", "whatsapp")
+    const token = crypto.randomUUID();
+    localStorage.setItem("@burg3r_Is_last_code", token);
+    open(
+      `https://api.whatsapp.com/send?phone=55${regInfos?.whatsapp}&text=%F0%9F%8D%94%20Ol%C3%A1%21%20A%20Burger%20informa%3A%0A%0AO%20seu%20c%C3%B3digo%20de%20verifica%C3%A7%C3%A3o%20%C3%A9%3A%0A${token}%0A%0A%F0%9F%92%A1%20Esse%20c%C3%B3digo%20ficar%C3%A1%20ativo%20permanentemente%20para%20uso%2C%20at%C3%A9%20que%20voc%C3%AA%20solicite%20outro.&source=&data=`,
+      "_blank"
+    );
+  }
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[350px] transition-all duration-[.5s] z-[150] rounded-[10px]">
@@ -164,11 +177,11 @@ function PaymentTab({
                 key={"method-" + i}
                 onClick={
                   elem === "Email"
-                    ? () => setMethod("email")
-                    : () => {
-                        const proceed = validateMethod(regInfos);
-                        if (proceed) setMethod("whatsapp");
-                      }
+                    ? () => {
+                      setMethod("email")
+                      localStorage.setItem("@burg3r_Is_method", "email")
+                    }
+                    : () => validateMethod()
                 }
                 className={`w-full p-[5px] rounded-[5px] hover:scale-[105%] active:scale-[95%] transition-all duration-[.25s] ${clsx(
                   {
@@ -183,6 +196,18 @@ function PaymentTab({
               </button>
             ))}
           </div>
+          {method === "whatsapp" ? (
+            <div className="mb-[10px]">
+              <Inputs
+                props={{
+                  title: "Verificação",
+                  placeholder: "Código de verificação aqui!",
+                  infos: false,
+                }}
+              />
+              <p onClick={() => alert(`🍔💬 Se não recebeu um código você pode solicitar um novo clicando em algum dos botões de seleção de meio de comunicação. Entretanto, o preenchimento incorreto do seu perfil pode estar ocasionando esse não recebimento, neste caso, edite seu perfil.`)} className="w-fit text-[.8em] font-medium text-default mt-[5px] underline hover:cursor-pointer active:opacity-50">Não recebeu um código?!</p>
+            </div>
+          ) : null}
           <p className="text-[.8em] text-[#636363] font-medium text-center">
             Você receberá uma confirmação/detalhes do pedido no seu {method}:
             <br />{" "}
@@ -195,14 +220,26 @@ function PaymentTab({
       <div className="absolute bottom-[-1px] left-0 w-full p-[15px] bg-white rounded-[10px]">
         <div
           onClick={() => {
-            if (method === undefined)
-              alert(
-                "🍔💬 Antes de executar esta ação, você precisa escolher um meio de comunicação para receber a confirmação/detalhes de seu pedido."
-              );
+            if (method === "whatsapp") {
+              if ((document.getElementById("input-for-" + "Verificação".toLowerCase()) as HTMLInputElement).value === "") {
+                alert("🍔💬 Você precisa informar o código de verificação. Se quiser, você pode solicitar um novo clicando no botão 'WhatsApp' novamente.")
+                return;
+              }
+              if (localStorage.getItem("@burg3r_Is_last_code") !== (document.getElementById("input-for-" + "Verificação".toLowerCase()) as HTMLInputElement).value) {
+                alert("🍔💬 O código de verificação inserido está incorreto. Você pode solicitar um novo clicando no botão 'WhatsApp' novamente.");
+                return;
+              }
+            }
           }}
         >
           <Button
-            text={"Confirmar Pedido | R$" + "83,46"}
+            text={
+              "Confirmar Pedido | R$" +
+              (subtotal + (1 / 100) * subtotal)
+                .toFixed(2)
+                .toString()
+                .replace(".", ",")
+            }
             auto={true}
             irregular={true}
             fontSize="16px"

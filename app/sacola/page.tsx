@@ -58,8 +58,7 @@ function Page() {
           <Title text={"Essas é a sua"} span="sacola!" />
           <aside className="flex items-center justify-between w-full max-w-[650px] px-[30px] text-[1.2em] font-semibold">
             <h1>Item</h1>
-            <h1>Quantidade</h1>
-            <h1>Preço</h1>
+            <h1>Quantidade & Preço</h1>
           </aside>
           <ul
             id="menu-list"
