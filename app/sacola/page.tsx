@@ -2,7 +2,7 @@
 
 import BagProduct from "../ui/BagProduct";
 import Title from "../ui/Title";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import burgerPicture from "@/public/media/sections-pictures/hero/hamburguer-hero-picture.png";
 import PaymentTab from "../ui/PaymentTab";
@@ -26,8 +26,11 @@ function Page() {
   );
 
   setInterval(() => {
-    if (typeof localStorage.getItem("@burg3r_Is_bag") !== undefined) {
-      setOnBag(JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string))
+    if (
+      typeof localStorage.getItem("@burg3r_Is_bag") !== undefined &&
+      onBag !== JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string)
+    ) {
+      setOnBag(JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string));
     }
   });
 
@@ -43,13 +46,23 @@ function Page() {
         </aside>
         <ul
           id="menu-list"
-          className={`flex flex-col ${onBag.length < 1 ? "justify-center" : ""} items-center w-full max-w-[700px] px-[15px] gap-[26px] h-[50vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
+          className={`flex flex-col ${
+            onBag.length < 1 ? "justify-center" : ""
+          } items-center w-full max-w-[700px] px-[15px] gap-[26px] h-[50vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
         >
-          {
-            onBag.length > 0 ? onBag.map((item, i) => (
-              <BagProduct key={"item-" + i} item={item} />
-            )) : (<p className="text-[1.25em] text-center"><Image src={burgerPicture} alt={"Imagem de um hambúrguer"} className="w-full max-w-[100px] m-auto opacity-[.2] blur-[2px]"/>Sua sacola está <span className="text-default font-semibold">vazia!</span> 🍔💬</p>)
-          }
+          {onBag.length > 0 ? (
+            onBag.map((item, i) => <BagProduct key={"item-" + i} item={item} />)
+          ) : (
+            <p className="text-[1.25em] text-center">
+              <Image
+                src={burgerPicture}
+                alt={"Imagem de um hambúrguer"}
+                className="w-full max-w-[100px] m-auto opacity-[.2] blur-[2px]"
+              />
+              Sua sacola está{" "}
+              <span className="text-default font-semibold">vazia!</span> 🍔💬
+            </p>
+          )}
         </ul>
       </div>
     </main>
