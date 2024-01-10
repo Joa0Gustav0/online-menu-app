@@ -26,7 +26,7 @@ function PaymentTab({
       productPrice: string;
     };
     units: number;
-    obs: string;
+    obs: string[];
   }>;
 }) {
   const [regInfos, setRegInfos] = useState<{
@@ -41,7 +41,7 @@ function PaymentTab({
   const [subtotal, setSubtotal] = useState(0);
   setInterval(() => {
     var val = 0;
-    if (onBag.length > 0) {
+    if (onBag?.length > 0) {
       onBag.forEach((item) => {
         val =
           val +

@@ -60,7 +60,7 @@ function Confirmation({
         }
       )}`}
     >
-      {onBag.length > 0
+      {onBag?.length > 0
         ? onBag.map((item) =>
             item.product.productName.toLowerCase() ===
             searchParams.get("item") ? (

@@ -19,7 +19,7 @@ function Page() {
       productPrice: string;
     };
     units: number;
-    obs: string;
+    obs: string[];
   }[];
 
   const [onBag, setOnBag] = useState<onBag | []>(
@@ -63,10 +63,10 @@ function Page() {
           <ul
             id="menu-list"
             className={`flex flex-col ${
-              onBag.length < 1 ? "justify-center" : ""
+              onBag?.length < 1 ? "justify-center" : ""
             } items-center w-full max-w-[700px] px-[15px] gap-[26px] h-fit max-h-[75vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
           >
-            {onBag.length > 0 ? (
+            {onBag?.length > 0 ? (
               onBag.map((item, i) => (
                 <BagProduct key={"item-" + i} item={item} />
               ))
@@ -82,7 +82,7 @@ function Page() {
               </p>
             )}
           </ul>
-          {onBag.length > 0 ? (
+          {onBag?.length > 0 ? (
             JSON.parse(
               localStorage.getItem("@burg3r_Is_ProfileSettings") as string
             ) !== null ? (

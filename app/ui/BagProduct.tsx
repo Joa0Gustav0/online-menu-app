@@ -14,7 +14,7 @@ function BagProduct({
       productPrice: string;
     };
     units: number;
-    obs: string;
+    obs: string[];
   };
 }) {
   type item = {
@@ -25,7 +25,7 @@ function BagProduct({
       productPrice: string;
     };
     units: number;
-    obs: string;
+    obs: string[];
   };
 
   function setQuantity(target: string, action: "sum" | "subtract") {
@@ -50,6 +50,10 @@ function BagProduct({
     });
     localStorage.setItem("@burg3r_Is_bag", JSON.stringify(bag));
   }
+  var _obs = "";
+  if (item.obs.length > 0)item.obs.forEach((elem) => {
+    _obs = _obs + `${elem} & `
+  })
 
   return (
     <li className="flex justify-between items-center gap-[15px] w-full p-[15px] rounded-[10px] bg-white shadow-lg">
@@ -66,10 +70,10 @@ function BagProduct({
             {item.product.productName}
           </h1>
           <abbr
-            title={item.obs}
+            title={_obs}
             className="w-fit text-[14px] text-[#636363] line-clamp-3 decoration-transparent"
           >
-            {item.obs !== "" ? item.obs : "Nenhuma observação."}
+            {_obs !== "" ? _obs : "Nenhuma observação."}
           </abbr>
         </aside>
       </div>

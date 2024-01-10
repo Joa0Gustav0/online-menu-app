@@ -11,7 +11,7 @@ export function storageBagData(
   if (!localStorage.getItem("@burg3r_Is_bag")) {
     localStorage.setItem(
       "@burg3r_Is_bag",
-      JSON.stringify([{ product: target, units: quantity, obs: obs }])
+      JSON.stringify([{ product: target, units: quantity, obs: [obs] }])
     );
     return;
   }
@@ -24,7 +24,7 @@ export function storageBagData(
       productPrice: string;
     };
     units: number;
-    obs: string;
+    obs: string[];
   }[] = JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string);
 
   var alreadyAdded = false;
@@ -32,14 +32,14 @@ export function storageBagData(
   csBag.forEach((onBag) => {
     if (onBag.product.productName === target.productName) {
       onBag.units = onBag.units + quantity;
-      onBag.obs = onBag.obs + " " + obs;
+      onBag.obs.push(obs);
       localStorage.setItem("@burg3r_Is_bag", JSON.stringify(csBag));
       alreadyAdded = true;
     }
   });
 
   if (alreadyAdded === false) {
-    csBag.push({ product: target, units: quantity, obs: obs });
+    csBag.push({ product: target, units: quantity, obs: [obs] });
     localStorage.setItem("@burg3r_Is_bag", JSON.stringify(csBag));
   }
 }
