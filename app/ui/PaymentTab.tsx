@@ -14,20 +14,11 @@ import emailjs from "@emailjs/browser";
 import { redirect } from "next/navigation";
 
 function PaymentTab({
-  setOnPayment,
-  onBag,
+  subtotal,
+  setOnPayment
 }: {
+  subtotal: number,
   setOnPayment: (val: false) => {};
-  onBag: Array<{
-    product: {
-      productPicture: string;
-      productName: string;
-      productDescription: string;
-      productPrice: string;
-    };
-    units: number;
-    obs: string[];
-  }>;
 }) {
   const [regInfos, setRegInfos] = useState<{
     nome: string;
@@ -38,20 +29,8 @@ function PaymentTab({
     JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
   );
 
-  const [subtotal, setSubtotal] = useState(0);
+ 
   setInterval(() => {
-    var val = 0;
-    if (onBag?.length > 0) {
-      onBag.forEach((item) => {
-        val =
-          val +
-          item.units * Number(item.product.productPrice.replace(",", "."));
-      });
-    }
-    if (subtotal !== val) {
-      setSubtotal(val);
-    }
-
     setRegInfos(
       JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
     );

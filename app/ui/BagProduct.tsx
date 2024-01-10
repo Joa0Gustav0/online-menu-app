@@ -51,9 +51,11 @@ function BagProduct({
     localStorage.setItem("@burg3r_Is_bag", JSON.stringify(bag));
   }
   var _obs = "";
-  if (item.obs.length > 0)item.obs.forEach((elem) => {
-    _obs = _obs + `${elem} & `
-  })
+  if (item.obs.length > 0) {
+    item.obs.forEach((elem, i) => {
+      _obs = _obs + `${elem}${i !== item.obs.length - 1 ? " & " : ""}`;
+    });
+  }
 
   return (
     <li className="flex justify-between items-center gap-[15px] w-full p-[15px] rounded-[10px] bg-white shadow-lg">
@@ -105,7 +107,9 @@ function BagProduct({
               className="hidden group-hover:block w-[17.5px]"
             />
           </button>
-          <p className="w-fit text-center font-semibold">{item.units} Uni.</p>
+          <p className="min-w-fit text-center font-semibold">
+            {item.units} Uni.
+          </p>
           <button
             onClick={() => setQuantity(item.product.productName, "sum")}
             className={`flex justify-center items-center w-[15px] h-[15px] p-[15px] text-[#fbc00f] bg-white hover:text-white hover:bg-default active:scale-[85%] active:transition-none rounded-full transition-all duration-[.25s]`}

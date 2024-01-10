@@ -39,6 +39,13 @@ function Page() {
 
   const [onPayment, setOnPayment] = useState(false);
 
+  function getSubtotal() {
+    var val = 0;
+    onBag.map(item => val += item.units * Number(item.product.productPrice.replace(",", ".")));
+    return val;
+  }
+  const [subtotal, setSubtotal] = useState(getSubtotal());
+
   return (
     <>
       <div
@@ -49,7 +56,7 @@ function Page() {
         )}`}
       >
         <PaymentTab
-          onBag={onBag}
+          subtotal={subtotal}
           setOnPayment={async (val) => setOnPayment(val)}
         />
       </div>
@@ -86,7 +93,10 @@ function Page() {
             JSON.parse(
               localStorage.getItem("@burg3r_Is_ProfileSettings") as string
             ) !== null ? (
-              <div onClick={() => setOnPayment(true)}>
+              <div onClick={() => {
+                setOnPayment(true)
+                setSubtotal(getSubtotal())
+              }}>
                 <Button
                   text={"Continuar?!"}
                   fontSize="34px"
