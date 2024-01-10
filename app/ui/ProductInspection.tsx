@@ -35,7 +35,7 @@ function ProductInspection() {
     <>
     <div
       className={
-        "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit max-h-[100vh] overflow-y-auto transition-all duration-[.5s] z-[150] " +
+        "tab fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit max-h-[100vh] overflow-y-auto transition-all duration-[.5s] z-[150] " +
         clsx({
           "-left-[350px] opacity-0": !searchParams.get("item") || ordered === true,
         })

@@ -36,3 +36,7 @@
   background-color: black;
   border-radius: 10px;
 }
+
+.tab::-webkit-scrollbar {
+  display: none;
+}
