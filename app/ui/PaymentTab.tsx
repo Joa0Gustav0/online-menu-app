@@ -5,7 +5,20 @@ import { useState } from "react";
 import Image from "next/image";
 import Button from "./button";
 
-function PaymentTab() {
+function PaymentTab({
+  onBag,
+}: {
+  onBag: Array<{
+    product: {
+      productPicture: string;
+      productName: string;
+      productDescription: string;
+      productPrice: string;
+    };
+    units: number;
+    obs: string;
+  }>;
+}) {
   const [regInfos, setRegInfos] = useState<{
     nome: string;
     email: string;
@@ -15,7 +28,11 @@ function PaymentTab() {
     JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
   );
 
+  const [subtotal, setSubtotal] = useState(0);
   setInterval(() => {
+    if (onBag.length > 0) {
+    }
+
     if (
       regInfos !==
       JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
@@ -55,19 +72,23 @@ function PaymentTab() {
           ))}
         </aside>
         <DivisionLine />
-        <h1 className="text-[1.25em] mb-[15px self-start">Informações Pessoais</h1>
+        <h1 className="text-[1.25em] mb-[15px self-start">
+          Informações Pessoais
+        </h1>
         <aside className="flex flex-col gap-[10px] w-full">
-          {["Subtotal", "Taxa de serviço", "Taxa de entrega", "Total"].map((elem, i) => (
-            <div
-              key={elem.toLowerCase()}
-              className="flex justify-between items-center gap-[30px]"
-            >
-              <h1 className="capitalize min-w-fit">{elem}</h1>
-              <p className="text-[#939393] font-medium max-w-[175px] line-clamp-1">
-                {elem}
-              </p>
-            </div>
-          ))}
+          {["Subtotal", "Taxa de serviço", "Taxa de entrega", "Total"].map(
+            (elem, i) => (
+              <div
+                key={elem.toLowerCase()}
+                className="flex justify-between items-center gap-[30px]"
+              >
+                <h1 className="capitalize min-w-fit">{elem}</h1>
+                <p className="text-[#939393] font-medium max-w-[175px] line-clamp-1">
+                  {elem}
+                </p>
+              </div>
+            )
+          )}
         </aside>
         <div>
           <h1>Pagamento</h1>

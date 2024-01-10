@@ -131,7 +131,6 @@ function ProductInspection() {
                     onClick={() => {
                       storageBagData(product, quantity, (document.getElementById("input-for-observações") as HTMLInputElement).value);
                       setOrdered(true);
-                      setQuantity(1);
                       (document.getElementById("input-for-observações") as HTMLInputElement).value = "";
                     }}
                   >
