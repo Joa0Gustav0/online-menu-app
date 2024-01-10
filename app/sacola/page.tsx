@@ -5,6 +5,7 @@ import Title from "../ui/Title";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import burgerPicture from "@/public/media/sections-pictures/hero/hamburguer-hero-picture.png";
+import PaymentTab from "../ui/PaymentTab";
 
 function Page() {
   type onBag = {
@@ -33,6 +34,7 @@ function Page() {
   return (
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5]">
       <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
+        <PaymentTab />
         <Title text={"Essas é a sua"} span="sacola!" />
         <aside className="flex items-center justify-between w-full max-w-[650px] px-[30px] text-[1.2em] font-semibold">
           <h1>Item</h1>
