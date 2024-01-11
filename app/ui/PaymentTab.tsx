@@ -11,16 +11,18 @@ import cashIcon from "@/public/media/icons/money-icon.png";
 import closeIcon from "@/public/media/icons/close-icon.png";
 import Inputs from "./Inputs";
 import emailjs from "@emailjs/browser";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getOrder } from "./data";
 
 function PaymentTab({
   subtotal,
-  setOnPayment
+  setOnPayment,
 }: {
-  subtotal: number,
+  subtotal: number;
   setOnPayment: (val: false) => {};
 }) {
+  const { push } = useRouter();
+
   const [regInfos, setRegInfos] = useState<{
     nome: string;
     email: string;
@@ -30,7 +32,6 @@ function PaymentTab({
     JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
   );
 
- 
   setInterval(() => {
     setRegInfos(
       JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
@@ -53,15 +54,17 @@ function PaymentTab({
           customer_email: regInfos?.email,
           customer_name: regInfos?.nome,
           customer_address: regInfos?.endereço,
-          subtotal_price: "R$" + subtotal.toFixed(2).toString().replace(".", ","),
-          service_price: "R$" + ((1 / 100) * subtotal)
-            .toFixed(2)
-            .toString()
-            .replace(".", ","),
-          total_price: "R$" + (subtotal + (1 / 100) * subtotal)
-            .toFixed(2)
-            .toString()
-            .replace(".", ","),
+          subtotal_price:
+            "R$" + subtotal.toFixed(2).toString().replace(".", ","),
+          service_price:
+            "R$" +
+            ((1 / 100) * subtotal).toFixed(2).toString().replace(".", ","),
+          total_price:
+            "R$" +
+            (subtotal + (1 / 100) * subtotal)
+              .toFixed(2)
+              .toString()
+              .replace(".", ","),
           burger_url: "its.burger.vercel.app",
           date: `${
             new Date().getDate() < 10
@@ -312,7 +315,6 @@ function PaymentTab({
               alert(
                 "🍔💬 Você precisa informar o código de verificação. Se quiser, você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
               );
-              return;
             } else if (
               localStorage.getItem("@burg3r_Is_last_code") !==
               (
@@ -324,7 +326,6 @@ function PaymentTab({
               alert(
                 "🍔💬 O código de verificação inserido está incorreto. Você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
               );
-              return;
             } else if (
               localStorage.getItem("@burg3r_Is_last_code") ===
               (
@@ -335,10 +336,14 @@ function PaymentTab({
             ) {
               switch (method) {
                 case "email":
-                  sendEmail("confirmation");
+                  //sendEmail("confirmation");
+                  localStorage.setItem(
+                    "@burg3r_Is_bought",
+                    crypto.randomUUID()
+                  );
+                  push("/pedido-realizado");
                   break;
               }
-              return;
             }
           }}
         >
