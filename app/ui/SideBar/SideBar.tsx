@@ -127,7 +127,7 @@ function SideBar({
         />
         <DivisionLine />
         <h1 className="relative w-full text-white font-medium overflow-visible mt-[36px] text-center z-[11]">
-          © Burger, 2023.
+          © Burger, {new Date().getFullYear()}.
           <br />
           All rights reserved.
           <div className="absolute bottom-[-15px] left-[-26px] w-[320px] max-w-[320px] h-[80px] z-[-1] bg-default"></div>
