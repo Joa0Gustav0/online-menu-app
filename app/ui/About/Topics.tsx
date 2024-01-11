@@ -4,15 +4,28 @@ import { StaticImageData } from "next/image";
 function Topics({
   properties,
   color,
+  bgColor,
+  index,
 }: {
-  properties: { title: string; img: StaticImageData; p: string; keywords: Array<string> };
+  properties: {
+    title: string;
+    img: StaticImageData;
+    p: string;
+    keywords: Array<string>;
+  };
   color: string;
+  bgColor: string;
+  index: number;
 }) {
-
-  const subStringArr = properties.p.split(' ');
+  const subStringArr = properties.p.split(" ");
 
   return (
-    <div className=" max-w-[320px] flex flex-col items-center gap-[15px] m-auto">
+    <div className="relative min-w-[225px] max-w-[320px] flex flex-col items-center gap-[15px] m-auto">
+      {index > 0 ? (
+        <div
+          className={`opacity-100 translate-y-[0] spmd:translate-y-[15px] spmd:opacity-0 ${bgColor} absolute left-1/2 top-[-18px] -translate-x-1/2 w-[100px] h-[2px] transition-all duration-[.25s]`}
+        ></div>
+      ) : null}
       <h1 className={color + " text-center text-[24px] font-bold"}>
         {properties.title}
       </h1>
@@ -22,9 +35,15 @@ function Topics({
         className="w-full max-w-[120px]"
       />
       <p className="text-[#434343] text-center">
-        {subStringArr.map((elem, i) => properties.keywords.includes(elem)
-        ? (<span key={"bold-string-" + i} className="font-semibold">{elem + ' '}</span>)
-        : (<span key={"bold-string-" + i}>{elem + ' '}</span>))}
+        {subStringArr.map((elem, i) =>
+          properties.keywords.includes(elem) ? (
+            <span key={"bold-string-" + i} className="font-semibold">
+              {elem + " "}
+            </span>
+          ) : (
+            <span key={"bold-string-" + i}>{elem + " "}</span>
+          )
+        )}
       </p>
     </div>
   );

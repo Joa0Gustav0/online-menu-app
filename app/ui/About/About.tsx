@@ -33,13 +33,13 @@ function About({
         }
       )}`}
     >
-      <div className="w-full max-w-[1115px] py-[110px] min-h-[679px] m-auto">
+      <div className="w-full max-w-[1115px] py-[110px] min-h-fit m-auto">
         <Title
           text={"Não conhece a"}
           span={"Burger?!"}
           textColor={theme.textColor}
         />
-        <div className="w-full grid grid-cols-3 items-center self-center mt-[100px]">
+        <div className="w-full flex flex-col spmd:flex-row spmd:justify-between gap-[36px] flex-wrap items-center self-center mt-[36px] spmd:mt-[100px] transition-all duration-[.25s]">
           {[
             {
               title: "Praticidade",
@@ -64,6 +64,8 @@ function About({
               key={"topic-" + i}
               properties={topic}
               color={theme.textColor}
+              bgColor={theme.bgColor}
+              index={i}
             />
           ))}
         </div>

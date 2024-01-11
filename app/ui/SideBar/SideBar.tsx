@@ -97,13 +97,13 @@ function SideBar({
               icon: aboutIcon,
               altIcon: aboutWhiteIcon,
               text: "Sobre Nós",
-              href: "/sobre",
+              href: "/#sobre",
             },
             {
               icon: reviewsIcon,
               altIcon: reviewsWhiteIcon,
               text: "Avaliações",
-              href: "/avaliacoes",
+              href: "/#avaliacoes",
             },
             {
               icon: burgerIcon,

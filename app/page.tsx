@@ -62,6 +62,11 @@ export default function Home() {
       "text-pizza transition-color duration-[.5s]": pageTheme === "pizza",
       "text-acai transition-color duration-[.5s]": pageTheme === "acai",
     }),
+    borderColor: clsx({
+      "border-default transition-color duration-[.5s]": pageTheme === "default",
+      "border-pizza transition-color duration-[.5s]": pageTheme === "pizza",
+      "border-acai transition-color duration-[.5s]": pageTheme === "acai",
+    })
   };
 
   return (
