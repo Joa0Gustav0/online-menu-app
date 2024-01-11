@@ -30,12 +30,12 @@ function Header() {
       <header
         className={`fixed top-0 left-0 ${
           secondaryFont.className
-        } w-full px-[36px] py-[26px] text-black bg-white z-[100] ${clsx({
+        } w-full min-h-[95px] px-[36px] py-[26px] text-black bg-white z-[100] ${clsx({
           "shadow-md": scrolled,
         })} transition-all duration-[.25s]`}
       >
-        <div className="flex flex-row justify-between w-full max-w-[1115px] m-auto">
-          <Link href={"/"} className="group relative">
+        <div className="flex flex-row justify-center ssm:justify-between w-full max-w-[1115px] overflow-x-hidden m-auto">
+          <Link href={"/"} className="group relative overflow-hidden">
             <h1
               className={`w-fit text-[28px] group-hover:scale-[0%] transition-all duration-[.25s]`}
             >

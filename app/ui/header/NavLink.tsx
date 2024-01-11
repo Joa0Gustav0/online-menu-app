@@ -3,7 +3,7 @@ import { secondaryFont } from "../fonts";
 
 function NavLink({ links }: { links: Array<{ text: string; href: string }> }) {
   return (
-    <ul className="flex items-center">
+    <ul className="hidden slg:flex items-center">
       {links.map((link, i) => (
         <li key={"navlink-" + i}>
           <Link

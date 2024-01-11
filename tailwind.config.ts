@@ -9,9 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        xsm: "275px",
         smlst: "400px",
         ssm: "500px",
         smlg: "850px",
+        slg: "1025px",
         lgst: "1115px",
       },
       backgroundImage: {
