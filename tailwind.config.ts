@@ -16,6 +16,7 @@ const config: Config = {
         md: "750px",
         spmd: "800px",
         smlg: "850px",
+        lg: "900px",
         slg: "1025px",
         lgst: "1115px",
       },
@@ -35,28 +36,28 @@ const config: Config = {
             transform: "scale(100%, 100%)",
           },
           "25%": {
-            transform: "scale(85%, 85%)"
+            transform: "scale(85%, 85%)",
           },
           "75%": {
-            transform: "scale(130%, 130%)"
+            transform: "scale(130%, 130%)",
           },
           "100%": {
-            transform: "scale(115%, 115%)"
-          }
+            transform: "scale(115%, 115%)",
+          },
         },
         fade_In: {
           "0%": {
-            opacity: "0"
+            opacity: "0",
           },
           "100%": {
-            opacity: "1"
-          }
-        }
+            opacity: "1",
+          },
+        },
       },
       animation: {
         button_hover: "pop linear .25s normal",
         fade_In: "fade_In linear .25s normal",
-      }
+      },
     },
   },
   plugins: [],

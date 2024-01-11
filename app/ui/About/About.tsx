@@ -33,7 +33,7 @@ function About({
         }
       )}`}
     >
-      <div className="w-full max-w-[1115px] py-[110px] min-h-fit m-auto">
+      <div className="w-full max-w-[1115px] py-[110px] min-h-fit m-auto overflow-hidden">
         <Title
           text={"Não conhece a"}
           span={"Burger?!"}

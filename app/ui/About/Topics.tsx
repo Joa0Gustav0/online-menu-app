@@ -20,7 +20,7 @@ function Topics({
   const subStringArr = properties.p.split(" ");
 
   return (
-    <div className="relative min-w-[225px] max-w-[320px] flex flex-col items-center gap-[15px] m-auto">
+    <div className="relative sxsm:min-w-[225px] max-w-[320px] flex flex-col items-center gap-[15px] m-auto overflow-hidden">
       {index > 0 ? (
         <div
           className={`opacity-100 translate-y-[0] spmd:translate-y-[15px] spmd:opacity-0 ${bgColor} absolute left-1/2 top-[-18px] -translate-x-1/2 w-[100px] h-[2px] transition-all duration-[.25s]`}

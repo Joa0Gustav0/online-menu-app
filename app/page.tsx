@@ -70,16 +70,16 @@ export default function Home() {
   };
 
   return (
-    <main className="relative w-full max-w-[1366px] m-auto pb-[26px]">
+    <main className="relative w-full max-w-[1366px] m-auto pb-[26px] overflow-x-hidden">
       <Hero theme={theme} />
       <About theme={theme} />
       <Reviews theme={theme} />
       <div className="flex items-center w-full">
-        <div className={theme.bgColor + " flex justify-end w-1/2  py-[15px]"}>
+        <div className={theme.bgColor + " hidden md:flex justify-end w-1/2  py-[15px]"}>
           <div
             className={
               secondaryFont.className +
-              " flex justify-end pr-[98px] relative uppercase text-white text-[34px] text-center"
+              " flex justify-end pr-[98px] relative uppercase text-white text-[18px] lg:text-[24px] lgst:text-[34px] text-center transition-all duration-[.25s]"
             }
           >
             <div className="flex items-center gap-[36px]">
@@ -89,13 +89,13 @@ export default function Home() {
               <Image
                 src={arrowIcon}
                 alt={"Imagem representativa de uma seta"}
-                className="w-[80px]"
+                className="w-[45px] lg:w-[60px] lgst:w-[80px] transition-all duration-[.25s]"
               />
             </div>
             <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white w-[92px] h-[92px] rotate-45"></div>
           </div>
         </div>
-        <Link href={"/cardapio"} className="absolute right-1/4 translate-x-1/2">
+        <Link href={"/cardapio"} className="absolute right-1/2 md:right-1/4 translate-x-1/2 bottom-[60px] md:bottom-[29px] lg:bottom-[38px] lgst:bottom-[51px] transition-all duration-[.25s]">
           <Button
             text={
               <>

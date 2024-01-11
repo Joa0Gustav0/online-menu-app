@@ -26,7 +26,7 @@ function Reviews({
   const reviews = data.reviews;
 
   return (
-    <section id="avaliacoes" className="w-full max-w-[1366px] min-h-fit m-auto py-[110px] px-[20px] smlst:px-[36px] transition-all duration-[.25s]">
+    <section id="avaliacoes" className="w-full max-w-[1366px] min-h-fit m-auto py-[110px] pb-[175px] md:pb-[110px] px-[20px] smlst:px-[36px] transition-all duration-[.25s] overflow-x-hidden">
       <div className="w-full max-w-[1115px] m-auto">
         <Title text="Algumas avaliações sobre a" span="Burger!" textColor={theme.textColor} />
         <ul className="flex flex-col items-center gap-[52px] md:gap-[26px] max-w-[800px] m-auto mt-[26px]">

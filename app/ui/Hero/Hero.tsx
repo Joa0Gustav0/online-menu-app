@@ -23,7 +23,7 @@ function Hero({
 }) {
   return (
     <section className="relative w-full max-w-[1366px] px-[20px] smlst:px-[36px] m-auto">
-      <div className="relative flex flex-col lgst:flex-row justify-center lgst:justify-around items-center w-full max-w-[1115px] overflow-x-visible min-h-screen py-[145px] m-auto">
+      <div className="relative flex flex-col lgst:flex-row justify-center lgst:justify-around items-center w-full max-w-[1115px] overflow-visible min-h-screen py-[145px] m-auto">
         <aside className="flex flex-col font-bold items-center lgst:items-start">
           <p className="relative text-[22px] ssm:text-[28px] text-center lgst:text-left w-fit px-[15px] mb-[36px] lgst:mb-[5px] transition-all duration-[.25s]">
             Sua fome{" "}
