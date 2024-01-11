@@ -336,11 +336,12 @@ function PaymentTab({
             ) {
               switch (method) {
                 case "email":
-                  //sendEmail("confirmation");
+                  sendEmail("confirmation");
                   localStorage.setItem(
                     "@burg3r_Is_bought",
                     crypto.randomUUID()
                   );
+                  localStorage.removeItem("@burg3r_Is_bag");
                   push("/pedido-realizado");
                   break;
               }

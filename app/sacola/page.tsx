@@ -41,7 +41,7 @@ function Page() {
 
   function getSubtotal() {
     var val = 0;
-    onBag.map(item => val += item.units * Number(item.product.productPrice.replace(",", ".")));
+    onBag?.map(item => val += item.units * Number(item.product.productPrice.replace(",", ".")));
     return val;
   }
   const [subtotal, setSubtotal] = useState(getSubtotal());

@@ -19,7 +19,7 @@ function Page() {
 
   useEffect(() => {
     if (localStorage.getItem("@burg3r_Is_bought") === null) {
-      push("/");
+      //push("/");
     }
   }, );
 
@@ -29,14 +29,15 @@ function Page() {
         "w-full max-w-[1366px] flex items-center justify-around min-h-screen px-[36px] bg-[#f5f5f5]"
       }
     >
-      <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hidden" : ""} text-[20px]`}>
+      <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hiddne" : ""} text-[20px]`}>
         <Title text="" span="🍔 Show de Bola! 🎉" />
         <p className="text-[#636363]">Pedido realizado com sucesso!</p>
-        <p className="mb-[15px]">
+        <p className="text-[#636363]">Verifique o seu {localStorage.getItem("@burg3r_Is_method")} para detalhes.</p>
+        <p className="my-[15px] font-medium">
           A <span className={secondaryFont.className}>Burger</span> agradece
           pela preferência.
         </p>
-        <Link href={"/"}>
+        <Link href={"/"} className="flex w-fit">
           <Button
             text={
               <>
@@ -50,7 +51,7 @@ function Page() {
           />
         </Link>
       </aside>
-      <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hidden" : ""} relative`}>
+      <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hiddne" : ""} relative`}>
         <Image
           src={burgerImg}
           alt={"Imagem meramente ilustrativa de um hambúrguer"}

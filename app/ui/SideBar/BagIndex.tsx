@@ -21,7 +21,7 @@ function BagIndex( {animate_colors}: {animate_colors: boolean} ) {
 
   return (
     <span
-      className={`${inBag >= 1 ? "" : "hidden"} ${!animate_colors ? "absolute translate-x-1/2 translate-y-1/2 right-0 bottom-[5px]" : ""} flex justify-center items-center w-[24px] h-[24px] bg-default  ${secondaryFont.className} text-white rounded-full group-hover:scale-[75%] group-active:scale-[100%] transition-all duration-[.25s] ${animate_colors ? "group-hover:bg-white group-hover:text-default" : ""}`}
+      className={`${JSON.parse(String(localStorage.getItem("@burg3r_Is_bag"))) as [] !== null ? "" : "hidden"} ${!animate_colors ? "absolute translate-x-1/2 translate-y-1/2 right-0 bottom-[5px]" : ""} flex justify-center items-center w-[24px] h-[24px] bg-default  ${secondaryFont.className} text-white rounded-full group-hover:scale-[75%] group-active:scale-[100%] transition-all duration-[.25s] ${animate_colors ? "group-hover:bg-white group-hover:text-default" : ""}`}
     >
       {inBag}
     </span>
