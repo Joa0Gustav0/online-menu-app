@@ -40,3 +40,7 @@
 .tab::-webkit-scrollbar {
   display: none;
 }
+
+.sidebar {
+  height: calc(100vh - 70px);
+}

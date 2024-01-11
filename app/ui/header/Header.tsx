@@ -20,7 +20,7 @@ function Header() {
     }
   };
 
-  const [sidebarActive, setSidebarActive] = useState(false);
+  const [sidebarActive, setSidebarActive] = useState(true);
 
   if (sidebarActive) document.body.style.overflowY = "hidden"
   else document.body.style.overflowY = "scroll"
