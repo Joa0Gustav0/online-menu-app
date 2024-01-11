@@ -19,55 +19,57 @@ function Page() {
 
   useEffect(() => {
     if (localStorage.getItem("@burg3r_Is_bought") === null) {
-      //push("/");
+      push("/");
     }
   }, );
 
   return (
     <main
       className={
-        "w-full max-w-[1366px] flex items-center justify-around min-h-screen px-[36px] bg-[#f5f5f5]"
+        "w-full bg-[#f5f5f5]"
       }
     >
-      <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hiddne" : ""} text-[20px]`}>
-        <Title text="" span="🍔 Show de Bola! 🎉" />
-        <p className="text-[#636363]">Pedido realizado com sucesso!</p>
-        <p className="text-[#636363]">Verifique o seu {localStorage.getItem("@burg3r_Is_method")} para detalhes.</p>
-        <p className="my-[15px] font-medium">
-          A <span className={secondaryFont.className}>Burger</span> agradece
-          pela preferência.
-        </p>
-        <Link href={"/"} className="flex w-fit">
-          <Button
-            text={
-              <>
-                Voltar <br /> ao Início
-              </>
-            }
-            fontSize=""
-            auto={false}
-            irregular={true}
-            arrow={"invert"}
+      <div className="w-full max-w-[1115px] flex flex-col smlg:flex-row items-center justify-center smlg:justify-evenly min-h-screen px-[20px] smlst:px-[36px] pt-[180px] pb-[85px] m-auto">
+        <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hidden" : ""} smlst:text-[20px] text-center smlg:text-left order-last smlg:order-first z-[5]`}>
+          <Title text="" span="🍔 Show de Bola! 🎉" />
+          <p className="text-[#636363]">Pedido realizado com sucesso!</p>
+          <p className="text-[#636363]">Verifique o seu {localStorage.getItem("@burg3r_Is_method")} para detalhes.</p>
+          <p className="my-[15px] font-medium">
+            A <span className={secondaryFont.className}>Burger</span> agradece
+            pela preferência.
+          </p>
+          <Link href={"/"} className="flex w-fit m-auto smlg:m-0">
+            <Button
+              text={
+                <>
+                  Voltar <br /> ao Início
+                </>
+              }
+              fontSize=""
+              auto={false}
+              irregular={true}
+              arrow={"invert"}
+            />
+          </Link>
+        </aside>
+        <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hidden" : ""} relative`}>
+          <Image
+            src={burgerImg}
+            alt={"Imagem meramente ilustrativa de um hambúrguer"}
+            className="w-full max-w-[150px] smlst:max-w-[200px] m-auto transition-all duration-[.25s]"
           />
-        </Link>
-      </aside>
-      <aside className={`${localStorage.getItem("@burg3r_Is_bought") === null ? "hiddne" : ""} relative`}>
-        <Image
-          src={burgerImg}
-          alt={"Imagem meramente ilustrativa de um hambúrguer"}
-          className="w-full max-w-[200px] m-auto"
-        />
-        <Image
-          src={burgerImg}
-          alt={"Imagem meramente ilustrativa de um hambúrguer"}
-          className="mirror-picture absolute left-1/2 -bottom-[40%] w-full max-w-[200px] m-auto opacity-[.10] blur-[2px]"
-        />
-        <Image
-          src={seal}
-          alt={"Imagem meramente ilustrativa de um hambúrguer"}
-          className="absolute right-[-60px] -top-[40px] w-full max-w-[150px] m-auto"
-        />
-      </aside>
+          <Image
+            src={burgerImg}
+            alt={"Imagem meramente ilustrativa de um hambúrguer"}
+            className="mirror-picture absolute left-1/2 -bottom-[40%] w-full max-w-[150px] smlst:max-w-[200px] m-auto opacity-[.1] blur-[2px] transition-all duration-[.25s]"
+          />
+          <Image
+            src={seal}
+            alt={"Imagem meramente ilustrativa de um hambúrguer"}
+            className="absolute top-[-15px] right-[-40px] smlst:right-[-60px] smlst:-top-[40px] w-full max-w-[100px] smlst:max-w-[150px] m-auto transition-all duration-[.25s]"
+          />
+        </aside>
+      </div>
     </main>
   );
 }
