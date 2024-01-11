@@ -34,8 +34,8 @@ function Header() {
           "shadow-md": scrolled,
         })} transition-all duration-[.25s]`}
       >
-        <div className="flex flex-row justify-center ssm:justify-between w-full max-w-[1115px] overflow-x-hidden m-auto">
-          <Link href={"/"} className="group relative overflow-hidden">
+        <div className="flex flex-row justify-center ssm:justify-between w-full max-w-[1115px] overflow-visible m-auto">
+          <Link href={"/"} className="group relative overflow-visible">
             <h1
               className={`w-fit text-[28px] group-hover:scale-[0%] transition-all duration-[.25s]`}
             >
