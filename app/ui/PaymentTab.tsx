@@ -12,6 +12,7 @@ import closeIcon from "@/public/media/icons/close-icon.png";
 import Inputs from "./Inputs";
 import emailjs from "@emailjs/browser";
 import { redirect } from "next/navigation";
+import { getOrder } from "./data";
 
 function PaymentTab({
   subtotal,
@@ -52,12 +53,12 @@ function PaymentTab({
           customer_email: regInfos?.email,
           customer_name: regInfos?.nome,
           customer_address: regInfos?.endereço,
-          subtotal_price: subtotal.toFixed(2).toString().replace(".", ","),
-          service_price: ((1 / 100) * subtotal)
+          subtotal_price: "R$" + subtotal.toFixed(2).toString().replace(".", ","),
+          service_price: "R$" + ((1 / 100) * subtotal)
             .toFixed(2)
             .toString()
             .replace(".", ","),
-          total_price: (subtotal + (1 / 100) * subtotal)
+          total_price: "R$" + (subtotal + (1 / 100) * subtotal)
             .toFixed(2)
             .toString()
             .replace(".", ","),
@@ -81,6 +82,7 @@ function PaymentTab({
               : new Date().getMinutes()
           }`,
           year: `${new Date().getFullYear()}`,
+          order: getOrder(),
         };
         break;
       case "token":

@@ -164,3 +164,34 @@ export function validateProfileSettings() {
     storageProfileSettings(profileData);
   }
 }
+
+export function getOrder() {
+  const onBag: {
+    product: {
+      productPicture: string;
+      productName: string;
+      productDescription: string;
+      productPrice: string;
+    };
+    units: number;
+    obs: string[];
+  }[] = JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string);
+
+  var order: string = "";
+  const categories = [
+    { c: "pizzas", rel: "Pizzas" },
+    { c: "burgers", rel: "Hambúrgueres" },
+    { c: "acais", rel: "Açaís" },
+  ];
+
+  onBag.forEach((elem) => {
+    order = order + `${elem.product.productName} (${elem.units} Uni.)\nPreço por unidade: R$${elem.product.productPrice}\nTotal: R$${(
+      Number(elem.product.productPrice.replace(",", ".")) * elem.units
+    )
+      .toFixed(2)
+      .toString()
+      .replace(".", ",")}\n\n`;
+  });
+
+  return order;
+}
