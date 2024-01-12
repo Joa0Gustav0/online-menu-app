@@ -8,7 +8,7 @@ import logo from "@/public/media/icons/nobg-logo-icon.png";
 import { secondaryFont } from "../fonts";
 import clsx from "clsx";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBar from "../SideBar/SideBar";
 
 function Header() {
@@ -22,8 +22,10 @@ function Header() {
 
   const [sidebarActive, setSidebarActive] = useState(false);
 
-  if (sidebarActive) document.body.style.overflowY = "hidden"
-  else document.body.style.overflowY = "scroll"
+  useEffect(() => {
+    if (sidebarActive) document.body.style.overflowY = "hidden"
+    else document.body.style.overflowY = "scroll"
+  })
 
   return (
     <>

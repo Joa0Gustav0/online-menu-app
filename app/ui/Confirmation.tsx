@@ -54,7 +54,7 @@ function Confirmation({
 
   return (
     <div
-      className={`no-scrollbar fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-[150] flex gap-[15px] w-fit max-w-[90vw] max-h-[90vh] bg-white p-[15px] pt-[180px] smd:pt-[15px]  pl-[15px] smd:pl-[180px] pb-0 rounded-[10px] overflow-y-auto transition-all duration-[.5s] ${clsx(
+      className={`no-scrollbar fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-[150] flex gap-[15px] w-[300px] exsm:w-fit max-w-[90vw] max-h-[95vh] bg-white p-[15px] pt-[180px] smd:pt-[15px]  pl-[15px] smd:pl-[180px] pb-0 rounded-[10px] overflow-y-auto transition-all duration-[.25s] ${clsx(
         {
           "left-[-100%] opacity-0": orderStatus.ordered === false,
         }
@@ -74,8 +74,8 @@ function Confirmation({
                     className="rounded-full smd:rounded-tl-[10px] smd:rounded-none smd:rounded-br-[100%] min-w-[150px] transition-all duration-[.25s]"
                   />
                 </div>
-                <div className="flex flex-col justify-between min-h-fit">
-                  <aside className="mb-[15px] max-w-[300px]">
+                <div className="flex flex-col justify-between min-h-fit w-full max-w-[300px]">
+                  <aside className="mb-[15px]">
                     <h1 className="text-[1.15em] font-semibold text-center smd:text-left">
                       Item Adicionado!
                     </h1>
@@ -99,7 +99,7 @@ function Confirmation({
                       </p>
                     </div>
                   </aside>
-                  <div className="flex flex-row-reverse min-w-[310px] pb-[15px] justify-end items-center gap-[20px]">
+                  <div className="flex flex-col-reverse exsm:flex-row-reverse exsm:w-[300px] smd:min-w-[310px] pb-[15px] justify-center smd:justify-end items-center gap-[10px] exsm:gap-[20px]">
                     <div
                       onClick={() => {
                         orderStatus.rmOrdered(false);
@@ -109,7 +109,7 @@ function Confirmation({
                       }}
                     >
                       <Button
-                        text={"Olhar Cardápio"}
+                        text={"Ver Cardápio"}
                         fontSize="16px"
                         auto={false}
                         irregular={true}

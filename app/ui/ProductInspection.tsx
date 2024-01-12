@@ -33,7 +33,7 @@ function ProductInspection() {
     <>
     <div
       className={
-        "tab fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit max-h-[95vh] overflow-y-auto transition-all duration-[.5s] z-[150] " +
+        "tab fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[90vw] h-fit max-h-[95vh] overflow-y-auto transition-all duration-[.5s] z-[150] " +
         clsx({
           "-left-[350px] opacity-0": !searchParams.get("item") || ordered === true,
         })
@@ -91,7 +91,7 @@ function ProductInspection() {
                   {product.productPrice}
                 </p>
                 <Inputs props={{title: "Observações", placeholder: "Alguma observação?", infos: false}} />
-                <div className="flex items-center justify-between pt-[15px]">
+                <div className="flex items-center justify-between gap-[15px] pt-[15px]">
                   <div className="flex items-center justify-center gap-[20px] text-[18px] font-bold">
                     <button
                       onClick={() => {
@@ -108,7 +108,7 @@ function ProductInspection() {
                     >
                       -
                     </button>
-                    <p className="w-[16px]">{quantity}</p>
+                    <p className="w-[16px] text-center">{quantity}</p>
                     <button
                       onClick={() => {
                         setQuantity(quantity + 1);
