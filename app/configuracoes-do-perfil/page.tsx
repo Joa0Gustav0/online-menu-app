@@ -22,10 +22,10 @@ function Page() {
   });
 
   return (
-    <main className="flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5]">
-      <div className="flex flex-col items-center gap-[26px] w-full max-w-[1115px]">
+    <main className="flex justify-center items-center w-full min-h-screen m-auto px-[20px] smlst:px-[36px] pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-x-hidden transition-all duration-[.25s]">
+      <div className="flex flex-col items-center gap-[26px] min-w-[260px] w-full max-w-[1115px]">
         <Title text="Essas são as suas" span="informações!" />
-        <div className="flex flex-col gap-[20px] w-full max-w-[525px] p-[20px] m-auto bg-white rounded-[10px] shadow-xl">
+        <div className="flex flex-col gap-[20px] w-full max-w-[525px] p-[20px] m-auto bg-white rounded-[10px] shadow-xl transition-all duration-[.25s]">
           <div className="flex items-center justify-between w-full">
             <p className="font-semibold">
               Status:{" "}
