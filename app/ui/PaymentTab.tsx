@@ -45,6 +45,7 @@ function PaymentTab({
   );
 
   function sendEmail(type: "confirmation" | "token", token?: string) {
+    const method = localStorage.getItem("@burg3r_Is_method");
     let templateID;
     let templateParams;
     switch (type) {
@@ -85,7 +86,7 @@ function PaymentTab({
               : new Date().getMinutes()
           }`,
           year: `${new Date().getFullYear()}`,
-          order: getOrder(),
+          order: getOrder((method as "whatsapp" | "email")),
         };
         break;
       case "token":
@@ -116,8 +117,19 @@ function PaymentTab({
         };
         break;
     }
-    emailjs.init("-FWzWsm_uOI05l0sp");
-    emailjs.send("service_ats1fbz", templateID, templateParams);
+
+    switch (method as "email" | "whatsapp") {
+      case "email":
+        emailjs.init("-FWzWsm_uOI05l0sp");
+        emailjs.send("service_ats1fbz", templateID, templateParams);
+        break;
+      case "whatsapp":
+        open(
+          `https://api.whatsapp.com/send?phone=55${regInfos?.whatsapp}&text=%F0%9F%91%8B%20Ol%C3%A1%21%20Venho%20de%20${templateParams.burger_url}%0A%0A%F0%9F%93%85%20${templateParams.date}%20%7C%20%E2%8F%B0%20${templateParams.time}%0A%0ANome%3A%20${templateParams.customer_name}%0AEmail%3A%20${templateParams.customer_email}%0AEndere%C3%A7o%3A%20${templateParams.customer_address}%0A%0AM%C3%A9todo%20de%20pagamento%3A%20Dinheiro%20-%20Para%20delivery%0A%0A%F0%9F%92%B2%20Custos%0A%0APre%C3%A7o%20dos%20produtos%3A%20R%24${templateParams.subtotal_price}%0ATaxa%20de%20entrega%3A%20Gr%C3%A1tis%0ATaxa%20de%20servi%C3%A7o%3A%20${templateParams.service_price}%0ATotal%20a%20pagar%3A%20${templateParams.total_price}%0A%20%0A%F0%9F%93%9D%20Pedido%0A%0A${templateParams.order}&source=&data=`,
+          "_blank"
+        );
+        break;
+    }
   }
 
   function validateMethod(method: "email" | "whatsapp") {
@@ -337,14 +349,17 @@ function PaymentTab({
               switch (method) {
                 case "email":
                   sendEmail("confirmation");
-                  localStorage.setItem(
-                    "@burg3r_Is_bought",
-                    crypto.randomUUID()
-                  );
-                  localStorage.removeItem("@burg3r_Is_bag");
-                  push("/pedido-realizado");
+                  break;
+                case "whatsapp":
+                  sendEmail("confirmation");
                   break;
               }
+              localStorage.setItem(
+                "@burg3r_Is_bought",
+                crypto.randomUUID()
+              );
+              localStorage.removeItem("@burg3r_Is_bag");
+              push("/pedido-realizado");
             }
           }}
         >

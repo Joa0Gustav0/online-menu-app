@@ -165,7 +165,7 @@ export function validateProfileSettings() {
   }
 }
 
-export function getOrder() {
+export function getOrder(method: "email" | "whatsapp") {
   const onBag: {
     product: {
       productPicture: string;
@@ -185,12 +185,36 @@ export function getOrder() {
   ];
 
   onBag.forEach((elem) => {
-    order = order + `${elem.product.productName} (${elem.units} Uni.)\nPreço por unidade: R$${elem.product.productPrice}\nTotal: R$${(
-      Number(elem.product.productPrice.replace(",", ".")) * elem.units
-    )
-      .toFixed(2)
-      .toString()
-      .replace(".", ",")}\n\n`;
+    switch (method) {
+      case "whatsapp":
+        order =
+          order +
+          `${elem.product.productName}%20(${
+            elem.units
+          } Uni.)%0APreço por unidade:%20R$${
+            elem.product.productPrice
+          }%0ATotal:%20R$${(
+            Number(elem.product.productPrice.replace(",", ".")) * elem.units
+          )
+            .toFixed(2)
+            .toString()
+            .replace(".", ",")}%0A%0A`;
+        break;
+      case "email":
+        order =
+          order +
+          `${elem.product.productName} (${
+            elem.units
+          } Uni.)\nPreço por unidade: R$${
+            elem.product.productPrice
+          }\nTotal: R$${(
+            Number(elem.product.productPrice.replace(",", ".")) * elem.units
+          )
+            .toFixed(2)
+            .toString()
+            .replace(".", ",")}\n\n`;
+        break;
+    }
   });
 
   return order;
