@@ -53,7 +53,9 @@ function BagProduct({
   var _obs = "";
   if (item.obs.length > 0) {
     item.obs.forEach((elem, i) => {
-      _obs = _obs + `${elem}${i !== item.obs.length - 1 ? " & " : ""}`;
+      if (elem.length > 0) {
+        _obs = _obs + `${i !== 0 ? " & " : ""} ${elem}`;
+      }
     });
   }
 
