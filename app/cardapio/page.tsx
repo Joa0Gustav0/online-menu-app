@@ -12,6 +12,7 @@ import MenuProduct from "../ui/MenuProduct";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ProductInspection from "../ui/ProductInspection";
 import { secondaryFont } from "../ui/fonts";
+import { Metadata } from "next";
 
 function Page() {
   const [filter, setFilter] = useState<string>("Todos");
