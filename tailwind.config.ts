@@ -15,6 +15,7 @@ const config: Config = {
         smlst: "400px",
         ssm: "500px",
         smd: "600px",
+        smmd: "675px",
         md: "750px",
         spmd: "800px",
         smlg: "850px",

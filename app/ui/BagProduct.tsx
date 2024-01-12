@@ -60,16 +60,16 @@ function BagProduct({
   }
 
   return (
-    <li className="flex justify-between items-center gap-[15px] w-full p-[15px] rounded-[10px] bg-white shadow-lg">
-      <div className="flex items-center gap-[15px]">
+    <li className="relative flex justify-between items-center gap-[15px] min-w-[215px] ssm:w-[375px] max-w-[90vw] md:w-full p-[15px] pb-[100px] exsm:pb-[60px] md:pb-[15px] rounded-[10px] bg-white shadow-lg transition-all duration-[.25s]">
+      <div className="flex justify-between flex-col ssm:flex-row md:justify-start items-center gap-[15px] w-full md:w-fit">
         <Image
           src={item.product.productPicture}
           alt={"Imagem referente ao produto: " + item.product.productName}
           width={125}
           height={125}
-          className="rounded-l-[10px] rounded-r-[110px]"
+          className="rounded-full ssm:rounded-l-[10px] ssm:rounded-r-[110px]"
         />
-        <aside className="flex flex-col gap-[5px] w-fit max-w-[200px]">
+        <aside className="flex flex-col items-center ssm:items-start gap-[5px] w-fit max-w-[200px]">
           <h1 className="text-default font-semibold">
             {item.product.productName}
           </h1>
@@ -81,9 +81,9 @@ function BagProduct({
           </abbr>
         </aside>
       </div>
-      <div className="relative flex items-center gap-[30px]">
-        <div className="absolute top-1/2 left-1/2 translate-x-[14.5px] -translate-y-1/2 w-[1px] h-[35px] bg-[#0004]"></div>
-        <div className="flex items-center justify-center gap-[10px] ">
+      <div className="absolute bottom-[15px] md:bottom-1/2 md:translate-y-1/2 translate-x-1/2 md:translate-x-0 right-1/2 md:right-[15px] flex flex-col exsm:flex-row items-center gap-[15px] exsm:gap-[30px] transition-all duration-[.25s]">
+        <div className="hidden exsm:block absolute top-1/2 left-1/2 translate-x-[14.5px] -translate-y-1/2 w-[1px] h-[35px] bg-[#0004]"></div>
+        <div className="flex items-center justify-center gap-[10px] rounded-full shadow-lg exsm:shadow-none transition-all duration-[.25s]">
           <button
             onClick={() => {
               setQuantity(item.product.productName, "subtract");

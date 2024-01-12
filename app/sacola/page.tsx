@@ -60,10 +60,10 @@ function Page() {
           setOnPayment={async (val) => setOnPayment(val)}
         />
       </div>
-      <main className="relative flex justify-center items-center w-full min-h-screen m-auto pt-[110px] pb-[36px] bg-[#f5f5f5]">
+      <main className="relative flex justify-center items-center w-full min-h-screen m-auto px-[20px] smlst:px-[36px] pt-[110px] pb-[36px] overflow-x-hidden bg-[#f5f5f5] transition-all duration-[.25s]">
         <div className="relative flex flex-col items-center gap-[26px] w-full max-w-[1115px] z-[10]">
           <Title text={"Essas é a sua"} span="sacola!" />
-          <aside className="flex items-center justify-between w-full max-w-[650px] px-[30px] text-[1.2em] font-semibold">
+          <aside className="hidden md:flex items-center justify-between w-full max-w-[650px] px-[30px] text-[1.2em] font-semibold">
             <h1>Item</h1>
             <h1>Quantidade & Preço</h1>
           </aside>
@@ -71,7 +71,7 @@ function Page() {
             id="menu-list"
             className={`flex flex-col ${
               onBag?.length < 1 ? "justify-center" : ""
-            } items-center w-full max-w-[700px] px-[15px] gap-[26px] h-fit max-h-[75vh] min-h-[340px] overflow-y-auto pt-[10px] pb-[26px]`}
+            } items-center w-full max-w-[700px] px-[26px] gap-[26px] h-fit max-h-[75vh] min-h-[340px] overflow-x-hidden overflow-y-auto pt-[10px] pb-[26px]`}
           >
             {onBag?.length > 0 ? (
               onBag.map((item, i) => (
@@ -99,7 +99,7 @@ function Page() {
               }}>
                 <Button
                   text={"Continuar?!"}
-                  fontSize="34px"
+                  fontSize="32px"
                   irregular={true}
                   auto={false}
                 />
