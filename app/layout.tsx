@@ -1,7 +1,7 @@
 import "@/app/ui/globals.css";
 import { primaryFont } from "./ui/fonts";
-import Header from "./ui/Header/Header";
-import Footer from "./ui/Footer/Footer";
+import Header from "@/app/ui/Header/Header";
+import Footer from "@/app/ui/Footer/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
