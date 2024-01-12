@@ -13,6 +13,7 @@ import Inputs from "./Inputs";
 import emailjs from "@emailjs/browser";
 import { useRouter } from "next/navigation";
 import { getOrder } from "./data";
+import { secondaryFont } from "./fonts";
 
 function PaymentTab({
   subtotal,
@@ -86,7 +87,7 @@ function PaymentTab({
               : new Date().getMinutes()
           }`,
           year: `${new Date().getFullYear()}`,
-          order: getOrder((method as "whatsapp" | "email")),
+          order: getOrder(method as "whatsapp" | "email"),
         };
         break;
       case "token":
@@ -170,19 +171,19 @@ function PaymentTab({
   }
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[350px] transition-all duration-[.5s] z-[150] rounded-[10px]">
-      <div className="absolute top-[-1px] left-0 w-full p-[15px] z-[10] bg-white rounded-[10px] overflow-hidden">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full smlst:max-w-[350px] h-full smlst:h-fit z-[150] rounded-none smlst:rounded-[10px] transition-all duration-[.5s]">
+      <div className="absolute top-[-1px] left-0 w-full p-[15px] z-[10] bg-white rounded-none smlst:rounded-[10px] overflow-hidden transition-all duration-[.5s]">
         <div
           onClick={() => setOnPayment(false)}
-          className="absolute top-0 right-0 w-[35px] hover:w-[40px] active:w-[35px] p-[10px] hover:p-[12.75px] active:p-[10px] hover:cursor-pointer bg-white hover:bg-default active:bg-white rounded-full rounded-tr-[10px] transition-all duration-[.25s]"
+          className="absolute top-0 right-0 w-[35px] hover:w-[40px] active:w-[35px] p-[10px] hover:p-[12.75px] active:p-[10px] hover:cursor-pointer bg-white hover:bg-default active:bg-white rounded-none smlst:rounded-full rounded-tr-[10px] transition-all duration-[.25s]"
         >
           <Image src={closeIcon} alt={"Ícone representativo do botão de"} />
         </div>
-        <Title text="Estamos" span="Quase Lá!" small={true} />
+        <p className={`${secondaryFont.className} text-[20px] text-center`}>Estamos <span className="text-default">Quase Lá!</span></p>
       </div>
       <div
         key={"inspection-product"}
-        className="tab relative flex flex-col items-center gap-[10px] overflow-x-hidden p-[15px] h-fit max-h-[95vh] pb-[65px] pt-[50px] overflow-y-auto font-semibold bg-white rounded-[10px]"
+        className="tab relative flex flex-col items-center gap-[10px] overflow-x-hidden p-[15px] h-fit max-h-[95vh] pb-[65px] pt-[50px] overflow-y-auto font-semibold bg-white rounded-[10px] transition-all duration-[.5s]"
       >
         <DivisionLine />
         <div className="flex justify-between items-center w-full mb-[15px]">
@@ -354,10 +355,7 @@ function PaymentTab({
                   sendEmail("confirmation");
                   break;
               }
-              localStorage.setItem(
-                "@burg3r_Is_bought",
-                crypto.randomUUID()
-              );
+              localStorage.setItem("@burg3r_Is_bought", crypto.randomUUID());
               localStorage.removeItem("@burg3r_Is_bag");
               push("/pedido-realizado");
             }
