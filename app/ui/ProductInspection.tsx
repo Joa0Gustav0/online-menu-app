@@ -10,7 +10,6 @@ import acaiIcon from "@/public/media/icons/acai-icon.png";
 import Button from "./button";
 import clsx from "clsx";
 import closeIcon from "@/public/media/icons/close-icon.png";
-import Link from "next/link";
 import { useState } from "react";
 import Inputs from "./Inputs";
 import Confirmation from "./Confirmation";

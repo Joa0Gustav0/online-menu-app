@@ -32,9 +32,9 @@ function MenuProduct({
         hidden:
           (filter !== "Todos" && param !== filter) ||
           product.productName.toLowerCase().indexOf(search.toLowerCase()) < 0,
-      })} flex justify-between items-center w-[600px] max-w-[600px] mx-[26px] p-[15px] bg-white rounded-[10px] shadow-lg hover:cursor-pointer hover:scale-[105%] active:scale-[95%] transition-all duration-[.25s]`}
+      })} relative flex justify-between items-end smd:items-center w-full  max-w-[250px] smd:max-w-[600px]  smd:min-h-[180px] p-[15px] pt-[180px] smd:pt-[15px] bg-white rounded-[10px] shadow-lg hover:cursor-pointer hover:scale-[105%] active:scale-[95%] transition-all duration-[.25s]`}
     >
-      <aside className="flex flex-col gap-[10px] max-w-[50%]">
+      <aside className="flex flex-col gap-[10px] max-w-none smd:max-w-[60%] transition-all duration-[.25s]">
         <h1 className="text-[1.2em] font-semibold">{product.productName}</h1>
         <p className="line-clamp-3">{product.productDescription}</p>
         <p className="text-[1.2em] font-semibold">R${product.productPrice}</p>
@@ -44,7 +44,7 @@ function MenuProduct({
         alt={"Imagem ilustrativa de " + param}
         width={150}
         height={150}
-        className="rounded-[10px]"
+        className="absolute right-1/2 translate-x-1/2 smd:translate-x-0 smd:right-[15px] top-[15px] smd:top-1/2 smd:-translate-y-1/2 rounded-full smd:rounded-[10px] transition-all duration-[.25s]"
       />
     </li>
   );
