@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     icon: "https://github.com/Joa0Gustav0/online-menu-app/assets/135780151/9e69140f-9624-4bc3-aa24-8644fde0f5b3",
     apple: "https://github.com/Joa0Gustav0/online-menu-app/assets/135780151/9e69140f-9624-4bc3-aa24-8644fde0f5b3",
   },
-  metadataBase: new URL("https://its.burger.vercel.app")
+  metadataBase: new URL("https://itsburger.vercel.app")
 }
 
 export default function RootLayout({

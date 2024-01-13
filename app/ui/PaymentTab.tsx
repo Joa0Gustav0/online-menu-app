@@ -68,7 +68,7 @@ function PaymentTab({
               .toFixed(2)
               .toString()
               .replace(".", ","),
-          burger_url: "its.burger.vercel.app",
+          burger_url: "itsburger.vercel.app",
           date: `${
             new Date().getDate() < 10
               ? `0` + new Date().getDate()
@@ -95,7 +95,7 @@ function PaymentTab({
         templateID = "template_0v3qnbr";
         templateParams = {
           customer_email: regInfos?.email,
-          burger_url: "its.burger.vercel.app",
+          burger_url: "itsburger.vercel.app",
           date: `${
             new Date().getDate() < 10
               ? `0` + new Date().getDate()
