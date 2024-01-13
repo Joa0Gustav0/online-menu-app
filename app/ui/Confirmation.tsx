@@ -44,7 +44,7 @@ function Confirmation({
     } else {
       []
     }
-  });
+  }, []);
 
   return (
     <div
@@ -58,7 +58,7 @@ function Confirmation({
         ? onBag.map((item) =>
             item.product.productName.toLowerCase() ===
             searchParams.get("item") ? (
-              <>
+              <div key={"product-confirmation"}>
                 <div className="absolute top-[15px] left-1/2 -translate-x-1/2 smd:translate-x-0 smd:top-0 smd:left-0 transition-all duration-[.25s]">
                   <Image
                     src={item.product.productPicture}
@@ -127,7 +127,7 @@ function Confirmation({
                     </Link>
                   </div>
                 </div>
-              </>
+              </div>
             ) : null
           )
         : null}
