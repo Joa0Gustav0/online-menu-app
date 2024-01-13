@@ -153,7 +153,7 @@ function PaymentTab({
     }
     setMethod(method);
     localStorage.setItem("@burg3r_Is_method", method);
-    const token = crypto.randomUUID();
+    const token = String(Math.floor(100000 + Math.random() * 900000));
     localStorage.setItem("@burg3r_Is_last_code", token);
     switch (method) {
       case "email":
