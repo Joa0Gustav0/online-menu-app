@@ -44,7 +44,7 @@ function PaymentTab({
     } else {
       setMethod(undefined);
     }
-  });
+  },[]);
 
   function sendEmail(type: "confirmation" | "token", token?: string) {
     const method = localStorage.getItem("@burg3r_Is_method");

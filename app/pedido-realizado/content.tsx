@@ -14,12 +14,14 @@ function Content() {
   const [method, setMethod] = useState<string | undefined>()
 
   useEffect(() => {
-    if (localStorage.getItem("@burg3r_Is_method") !== null) {
-      setMethod((localStorage.getItem("@burg3r_Is_method") as string));
-    } else {
-      setMethod(undefined);
-    }
-  })
+    setInterval(() => {
+      if (localStorage.getItem("@burg3r_Is_method") !== null) {
+        setMethod((localStorage.getItem("@burg3r_Is_method") as string));
+      } else {
+        setMethod(undefined);
+      }
+    }, 300)
+  }, [])
 
   return (
     <>

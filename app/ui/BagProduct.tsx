@@ -99,14 +99,16 @@ function BagProduct({
             <Image
               src={trashIcon}
               alt="Ícone representativo: deletar"
-              className={`group-hover:hidden w-[17.5px] ${clsx({
-                "hidden group-hover:hidden": item.units > 1,
+              className={`block group-hover:hidden min-w-[17.5px] ${clsx({
+                "hidden": item.units > 1,
               })}`}
             />
             <Image
               src={trashWhiteIcon}
               alt="Ícone representativo: deletar"
-              className="hidden group-hover:block w-[17.5px]"
+              className={`hidden group-hover:block min-w-[17.5px] ${clsx({
+                "hidden group-hover:hidden": item.units > 1
+              })}`}
             />
           </button>
           <p className="min-w-fit text-center font-semibold">

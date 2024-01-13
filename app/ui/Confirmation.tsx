@@ -39,11 +39,13 @@ function Confirmation({
   const [onBag, setOnBag] = useState<onBag | []>([]);
 
   useEffect(() => {
-    if (localStorage.getItem("@burg3r_Is_bag") !== null) {
-      setOnBag(JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string));
-    } else {
-      []
-    }
+    setInterval(() => {
+      if (localStorage.getItem("@burg3r_Is_bag") !== null) {
+        setOnBag(JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string));
+      } else {
+        []
+      }
+    }, 300)
   }, []);
 
   return (

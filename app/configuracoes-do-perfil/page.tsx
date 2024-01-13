@@ -18,14 +18,16 @@ function Page() {
   } | null>(null);
 
   useEffect(() => {
-    if (localStorage.getItem("@burg3r_Is_ProfileSettings") !== null) {
-      setRegSts(
-        JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-      );
-    }else {
-      setRegSts(null);
-    }
-  });
+    setInterval(() => {
+      if (localStorage.getItem("@burg3r_Is_ProfileSettings") !== null) {
+        setRegSts(
+          JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
+        );
+      }else {
+        setRegSts(null);
+      }
+    }, 300)
+  }, []);
 
   return (
     <main className="flex justify-center items-center w-full min-h-screen m-auto px-[20px] smlst:px-[36px] pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-x-hidden transition-all duration-[.25s]">
