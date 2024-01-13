@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import infoIcon from "@/public/media/icons/info-icon.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 
 function Inputs({
@@ -18,18 +18,19 @@ function Inputs({
 }) {
   const [infosActive, setInfosActive] = useState(false);
 
-  window.onmousedown = (e) => {
-    var test = typeof window === undefined;
-    if (test === false && e.target) {
-      var substrings = (e.target as HTMLElement).className?.split(" ");
-      if (
-        !substrings.includes("info-aside") &&
-        !substrings.includes("info-aside-children") &&
-        infosActive
-      )
-        setInfosActive(false);
+  useEffect(() => {
+    window.onmousedown = (e) => {
+      if (e.target) {
+        var substrings = (e.target as HTMLElement).className?.split(" ");
+        if (
+          !substrings.includes("info-aside") &&
+          !substrings.includes("info-aside-children") &&
+          infosActive
+        )
+          setInfosActive(false);
+      }
     }
-  };
+  });
 
   return (
     <label

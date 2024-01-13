@@ -13,16 +13,14 @@ import SideBar from "../SideBar/SideBar";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
-  window.onscroll = () => {
-    var test = typeof window === undefined;
-    if (test === false) {
-      setScrolled(window.scrollY > 0);
-    }
-  };
 
   const [sidebarActive, setSidebarActive] = useState(false);
 
   useEffect(() => {
+    window.onscroll = () => {
+      setScrolled(window.scrollY > 0);
+    }
+
     if (sidebarActive) document.body.style.overflowY = "hidden"
     else document.body.style.overflowY = "scroll"
   })

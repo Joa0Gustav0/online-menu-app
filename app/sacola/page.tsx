@@ -2,7 +2,7 @@
 
 import BagProduct from "../ui/BagProduct";
 import Title from "../ui/Title";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import burgerPicture from "@/public/media/sections-pictures/hero/hamburguer-hero-picture.png";
 import PaymentTab from "../ui/PaymentTab";
@@ -22,18 +22,13 @@ function Page() {
     obs: string[];
   }[];
 
-  const [onBag, setOnBag] = useState<onBag | []>(
-    typeof localStorage.getItem("@burg3r_Is_bag") !== undefined
-      ? JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string)
-      : []
-  );
+  const [onBag, setOnBag] = useState<onBag | []>([]);
 
-  setInterval(() => {
-    if (
-      typeof localStorage.getItem("@burg3r_Is_bag") !== undefined &&
-      onBag !== JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string)
-    ) {
+  useEffect(() => {
+    if (localStorage.getItem("@burg3r_Is_bag") !== null) {
       setOnBag(JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string));
+    } else {
+      setOnBag([])
     }
   });
 
@@ -41,7 +36,11 @@ function Page() {
 
   function getSubtotal() {
     var val = 0;
-    onBag?.map(item => val += item.units * Number(item.product.productPrice.replace(",", ".")));
+    onBag?.map(
+      (item) =>
+        (val +=
+          item.units * Number(item.product.productPrice.replace(",", ".")))
+    );
     return val;
   }
   const [subtotal, setSubtotal] = useState(getSubtotal());
@@ -91,12 +90,14 @@ function Page() {
           </ul>
           {onBag?.length > 0 ? (
             JSON.parse(
-              localStorage.getItem("@burg3r_Is_ProfileSettings") as string
+              localStorage?.getItem("@burg3r_Is_ProfileSettings") as string
             ) !== null ? (
-              <div onClick={() => {
-                setOnPayment(true)
-                setSubtotal(getSubtotal())
-              }}>
+              <div
+                onClick={() => {
+                  setOnPayment(true);
+                  setSubtotal(getSubtotal());
+                }}
+              >
                 <Button
                   text={"Continuar?!"}
                   fontSize="32px"
@@ -119,8 +120,20 @@ function Page() {
                     auto={false}
                   />
                 </div>
-                <p>🍔💬 Basta um <span className="font-semibold">regitro</span> e você poderá fazer seu pedido!</p>
-                <p>➡ Registre-se <Link href={"/configuracoes-do-perfil"} className="text-default underline">aqui!</Link> ⬅</p>
+                <p>
+                  🍔💬 Basta um <span className="font-semibold">regitro</span> e
+                  você poderá fazer seu pedido!
+                </p>
+                <p>
+                  ➡ Registre-se{" "}
+                  <Link
+                    href={"/configuracoes-do-perfil"}
+                    className="text-default underline"
+                  >
+                    aqui!
+                  </Link>{" "}
+                  ⬅
+                </p>
               </>
             )
           ) : null}

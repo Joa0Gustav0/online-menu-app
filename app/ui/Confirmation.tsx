@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Button from "./button";
 import Image from "next/image";
-import data from "@/public/products.json";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
@@ -37,18 +36,13 @@ function Confirmation({
     obs: string;
   }[];
 
-  const [onBag, setOnBag] = useState<onBag | []>(
-    typeof localStorage.getItem("@burg3r_Is_bag") !== undefined
-      ? JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string)
-      : []
-  );
+  const [onBag, setOnBag] = useState<onBag | []>([]);
 
-  setInterval(() => {
-    if (
-      typeof localStorage.getItem("@burg3r_Is_bag") !== undefined &&
-      onBag !== JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string)
-    ) {
+  useEffect(() => {
+    if (localStorage.getItem("@burg3r_Is_bag") !== null) {
       setOnBag(JSON.parse(localStorage.getItem("@burg3r_Is_bag") as string));
+    } else {
+      []
     }
   });
 
@@ -84,7 +78,8 @@ function Confirmation({
                     </p>
                     <div className="flex flex-col gap-[5px]">
                       <h1 className="font-semibold text-default">
-                        {item.product.productName} <span className="text-black">({quantity} Uni.)</span>
+                        {item.product.productName}{" "}
+                        <span className="text-black">({quantity} Uni.)</span>
                       </h1>
                       <p>{item.product.productDescription}</p>
                       <p className="font-semibold">

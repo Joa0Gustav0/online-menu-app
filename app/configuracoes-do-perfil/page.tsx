@@ -8,17 +8,23 @@ import clsx from "clsx";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import editIcon from "@/public/media/icons/edit-icon.png";
-import PaymentTab from "../ui/PaymentTab";
 
 function Page() {
-  const [regSts, setRegSts] = useState(
-    JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-  );
+  const [regSts, setRegSts] = useState<{
+    nome: string;
+    email: string;
+    whatsapp: string;
+    endereço: string;
+  } | null>(null);
 
-  setInterval(() => {
-    setRegSts(
-      JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-    );
+  useEffect(() => {
+    if (localStorage.getItem("@burg3r_Is_ProfileSettings") !== null) {
+      setRegSts(
+        JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
+      );
+    }else {
+      setRegSts(null);
+    }
   });
 
   return (
@@ -40,7 +46,7 @@ function Page() {
                 var res = confirm(
                   "🍔💬 Fazer isso removerá as sua informações de perfil atuais para que você insira novas. Deseja continuar com a ação?"
                 );
-                if (res) localStorage.removeItem("@burg3r_Is_ProfileSettings");
+                if (res) localStorage?.removeItem("@burg3r_Is_ProfileSettings");
                 alert(
                   "🍔💬 Você não possui mais registro. Se for adicionar novas informações de perfil, nunca esqueça-as de salvar!"
                 );
@@ -89,16 +95,22 @@ function Page() {
             {
               title: "Endereço",
               placeholder: "Insira o seu endereço aqui!",
-              infos: [
-                "O endereço aqui inserido estará presente nas confirmações/detalhes de pedidos efetuados.",
-              ],
+              infos: false,
             },
           ].map((input, i) => (
             <Inputs
               key={"input-" + i}
               props={input}
               value={
-                regSts !== null ? regSts[input.title.toLowerCase()] : undefined
+                regSts !== null
+                  ? regSts[
+                      input.title.toLowerCase() as
+                        | "nome"
+                        | "email"
+                        | "whatsapp"
+                        | "endereço"
+                    ]
+                  : undefined
               }
             />
           ))}

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import DivisionLine from "./DivisionLine";
-import Title from "./Title";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "./button";
 import clsx from "clsx";
@@ -29,21 +28,23 @@ function PaymentTab({
     email: string;
     whatsapp: string;
     endereço: string;
-  } | null>(
-    JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-  );
+  } | null>(null);
 
-  setInterval(() => {
-    setRegInfos(
-      JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
-    );
+  const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(undefined);
+
+  useEffect(() => {
+    if (localStorage.getItem("@burg3r_Is_ProfileSettings") !== null) {
+      setRegInfos(JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string));
+    } else {
+      setRegInfos(null);
+    }
+
+    if (localStorage.getItem("@burg3r_Is_method") !== undefined) {
+      setMethod((localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp"));
+    } else {
+      setMethod(undefined);
+    }
   });
-
-  const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(
-    localStorage.getItem("@burg3r_Is_method") !== null
-      ? (localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp")
-      : undefined
-  );
 
   function sendEmail(type: "confirmation" | "token", token?: string) {
     const method = localStorage.getItem("@burg3r_Is_method");
@@ -179,7 +180,9 @@ function PaymentTab({
         >
           <Image src={closeIcon} alt={"Ícone representativo do botão de"} />
         </div>
-        <p className={`${secondaryFont.className} text-[20px] text-center`}>Estamos <span className="text-default">Quase Lá!</span></p>
+        <p className={`${secondaryFont.className} text-[20px] text-center`}>
+          Estamos <span className="text-default">Quase Lá!</span>
+        </p>
       </div>
       <div
         key={"inspection-product"}

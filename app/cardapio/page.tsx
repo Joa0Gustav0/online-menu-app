@@ -9,10 +9,8 @@ import clsx from "clsx";
 import { useState } from "react";
 import MenuProduct from "../ui/MenuProduct";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import ProductInspection from "../ui/ProductInspection";
-import { secondaryFont } from "../ui/fonts";
-import { Metadata } from "next";
 
 function Page() {
   const [filter, setFilter] = useState<string>("Todos");
@@ -25,9 +23,7 @@ function Page() {
     productsData.acais,
   ];
 
-  const path = usePathname();
   const searchParams = new URLSearchParams(useSearchParams());
-  const { replace } = useRouter();
 
   return (
     <main className="relative flex justify-center items-center w-full min-h-screen m-auto px-[20px] smlst:px-[36px] pt-[110px] pb-[36px] bg-[#f5f5f5] overflow-hidden transition-all duration-[.25s]">

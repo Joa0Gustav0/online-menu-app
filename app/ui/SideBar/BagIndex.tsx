@@ -1,14 +1,12 @@
 "use client";
 
 import { secondaryFont } from "../fonts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function BagIndex( {animate_colors}: {animate_colors: boolean} ) {
-  const [inBag, setInBag] = useState(
-    (JSON.parse(String(localStorage.getItem("@burg3r_Is_bag"))) as []) ? (JSON.parse(String(localStorage.getItem("@burg3r_Is_bag"))) as []).length : 0
-  );
+  const [inBag, setInBag] = useState<number>(0);
 
-  setInterval(() => {
+  useEffect(() => {
     if (
       JSON.parse(String(localStorage.getItem("@burg3r_Is_bag")))
     ) {
@@ -17,7 +15,7 @@ function BagIndex( {animate_colors}: {animate_colors: boolean} ) {
           .length
       );
     }
-  })
+  }, [])
 
   return (
     <span
