@@ -60,7 +60,7 @@ function BagProduct({
   }
 
   return (
-    <li className="relative flex justify-between items-center gap-[15px] min-w-[215px] ssm:w-[375px] max-w-[90vw] md:w-full p-[15px] pb-[100px] exsm:pb-[60px] md:pb-[15px] rounded-[10px] bg-white shadow-lg transition-all duration-[.25s]">
+    <li className="relative flex justify-between items-center gap-[15px] min-w-full exsm:min-w-[280px] ssm:w-[375px] max-w-[90vw] md:w-full p-[15px] pb-[100px] exsm:pb-[60px] md:pb-[15px] rounded-[10px] bg-white shadow-lg transition-all duration-[.25s]">
       <div className="flex justify-between flex-col ssm:flex-row md:justify-start items-center gap-[15px] w-full md:w-fit">
         <Image
           src={item.product.productPicture}
@@ -70,12 +70,12 @@ function BagProduct({
           className="rounded-full ssm:rounded-l-[10px] ssm:rounded-r-[110px]"
         />
         <aside className="flex flex-col items-center ssm:items-start gap-[5px] w-fit max-w-[200px]">
-          <h1 className="text-default font-semibold">
+          <h1 className="text-default font-semibold text-center ssm:text-left">
             {item.product.productName}
           </h1>
           <abbr
             title={_obs}
-            className="w-fit text-[14px] text-[#636363] line-clamp-3 decoration-transparent"
+            className="w-fit text-[14px] text-center ssm:text-left text-[#636363] line-clamp-3 decoration-transparent"
           >
             {_obs !== "" ? _obs : "Nenhuma observação."}
           </abbr>
