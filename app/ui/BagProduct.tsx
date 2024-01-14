@@ -99,14 +99,14 @@ function BagProduct({
             <Image
               src={trashIcon}
               alt="Ícone representativo: deletar"
-              className={`block group-hover:hidden min-w-[17.5px] ${clsx({
+              className={`block group-hover:hidden min-w-[17.5px] max-w-[17.5px] ${clsx({
                 "hidden": item.units > 1,
               })}`}
             />
             <Image
               src={trashWhiteIcon}
               alt="Ícone representativo: deletar"
-              className={`hidden group-hover:block min-w-[17.5px] ${clsx({
+              className={`hidden group-hover:block min-w-[17.5px] max-w-[17.5px] ${clsx({
                 "hidden group-hover:hidden": item.units > 1
               })}`}
             />
