@@ -30,21 +30,27 @@ function PaymentTab({
     endereço: string;
   } | null>(null);
 
-  const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(undefined);
+  const [method, setMethod] = useState<"email" | "whatsapp" | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     if (localStorage.getItem("@burg3r_Is_ProfileSettings") !== null) {
-      setRegInfos(JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string));
+      setRegInfos(
+        JSON.parse(localStorage.getItem("@burg3r_Is_ProfileSettings") as string)
+      );
     } else {
       setRegInfos(null);
     }
 
     if (localStorage.getItem("@burg3r_Is_method") !== undefined) {
-      setMethod((localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp"));
+      setMethod(
+        localStorage.getItem("@burg3r_Is_method") as "email" | "whatsapp"
+      );
     } else {
       setMethod(undefined);
     }
-  },[]);
+  }, []);
 
   function sendEmail(type: "confirmation" | "token", token?: string) {
     const method = localStorage.getItem("@burg3r_Is_method");
@@ -186,7 +192,7 @@ function PaymentTab({
       </div>
       <div
         key={"inspection-product"}
-        className="tab relative flex flex-col items-center gap-[10px] overflow-x-hidden p-[15px] h-fit max-h-[95vh] pb-[65px] pt-[50px] overflow-y-auto font-semibold bg-white rounded-[10px] transition-all duration-[.5s]"
+        className="tab relative flex flex-col items-center gap-[10px] overflow-x-hidden p-[15px] h-fit max-h-[95vh] pt-[50px] overflow-y-auto font-semibold bg-white rounded-[10px] transition-all duration-[.5s]"
       >
         <DivisionLine />
         <div className="flex justify-between items-center w-full mb-[15px]">
@@ -309,73 +315,76 @@ function PaymentTab({
               </p>
             </div>
           ) : null}
-          <p className="text-[.8em] text-[#636363] font-medium text-center">
+          <p className="text-[.8em] mb-[5px] text-[#636363] font-medium text-center">
             Você receberá uma confirmação/detalhes do pedido no seu {method}:
             <br />{" "}
             <span className="text-black font-semibold">
               {method === "email" ? regInfos?.email : regInfos?.whatsapp}
             </span>
           </p>
-        </div>
-      </div>
-      <div className="absolute bottom-[-1px] left-0 w-full p-[15px] bg-white rounded-[10px]">
-        <div
-          onClick={() => {
-            if (
-              (
-                document.getElementById(
-                  "input-for-" + "Verificação".toLowerCase()
-                ) as HTMLInputElement
-              ).value === ""
-            ) {
-              alert(
-                "🍔💬 Você precisa informar o código de verificação. Se quiser, você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
-              );
-            } else if (
-              localStorage.getItem("@burg3r_Is_last_code") !==
-              (
-                document.getElementById(
-                  "input-for-" + "Verificação".toLowerCase()
-                ) as HTMLInputElement
-              ).value
-            ) {
-              alert(
-                "🍔💬 O código de verificação inserido está incorreto. Você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
-              );
-            } else if (
-              localStorage.getItem("@burg3r_Is_last_code") ===
-              (
-                document.getElementById(
-                  "input-for-" + "Verificação".toLowerCase()
-                ) as HTMLInputElement
-              ).value
-            ) {
-              switch (method) {
-                case "email":
-                  sendEmail("confirmation");
-                  break;
-                case "whatsapp":
-                  sendEmail("confirmation");
-                  break;
-              }
-              localStorage.setItem("@burg3r_Is_bought", crypto.randomUUID());
-              localStorage.removeItem("@burg3r_Is_bag");
-              push("/pedido-realizado");
-            }
-          }}
-        >
-          <Button
-            text={
-              "Confirmar Pedido | R$" +
-              (subtotal + (1 / 100) * subtotal)
-                .toFixed(2)
-                .toString()
-                .replace(".", ",")
-            }
-            auto={true}
-            irregular={true}
-            fontSize="16px"
-          />
+          <div className="w-full bg-white rounded-[10px]">
+            <div
+              onClick={() => {
+                if (
+                  (
+                    document.getElementById(
+                      "input-for-" + "Verificação".toLowerCase()
+                    ) as HTMLInputElement
+                  ).value === ""
+                ) {
+                  alert(
+                    "🍔💬 Você precisa informar o código de verificação. Se quiser, você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
+                  );
+                } else if (
+                  localStorage.getItem("@burg3r_Is_last_code") !==
+                  (
+                    document.getElementById(
+                      "input-for-" + "Verificação".toLowerCase()
+                    ) as HTMLInputElement
+                  ).value
+                ) {
+                  alert(
+                    "🍔💬 O código de verificação inserido está incorreto. Você pode solicitar um novo clicando no botão 'Email' ou 'WhatsApp' novamente."
+                  );
+                } else if (
+                  localStorage.getItem("@burg3r_Is_last_code") ===
+                  (
+                    document.getElementById(
+                      "input-for-" + "Verificação".toLowerCase()
+                    ) as HTMLInputElement
+                  ).value
+                ) {
+                  switch (method) {
+                    case "email":
+                      sendEmail("confirmation");
+                      break;
+                    case "whatsapp":
+                      sendEmail("confirmation");
+                      break;
+                  }
+                  localStorage.setItem(
+                    "@burg3r_Is_bought",
+                    crypto.randomUUID()
+                  );
+                  localStorage.removeItem("@burg3r_Is_bag");
+                  push("/pedido-realizado");
+                }
+              }}
+            >
+              <Button
+                text={
+                  "Confirmar Pedido | R$" +
+                  (subtotal + (1 / 100) * subtotal)
+                    .toFixed(2)
+                    .toString()
+                    .replace(".", ",")
+                }
+                auto={true}
+                irregular={true}
+                fontSize="16px"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
